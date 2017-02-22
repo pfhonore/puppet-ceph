@@ -131,6 +131,19 @@
 # [*rbd_default_features*] Set RBD features configuration.
 #   Optional. String. Defaults to undef.
 #
+# [*enable_experimental_unrecoverable_data_corrupting_features*]
+#   Optional. String. Default provided by Ceph.
+# [*osd_objecstore*]
+#   Optional. String. Default provided by Ceph.
+# [*bluestore_fsck_on_mount*]
+#   Optional. Boolean. Default provided by Ceph.
+# [*bluestore_block_db_size*]
+#   Optional. Default provided by Ceph.
+# [*bluestore_block_wal_size*]
+#   Optional. Default provided by Ceph.
+# [*bluestore_block_size*]
+#   Optional. Default provided by Ceph.
+#
 # DEPRECATED PARAMETERS
 #
 # [*set_osd_params*] disables setting osd params using this module by default as people
@@ -171,7 +184,14 @@ class ceph (
   $osd_max_scrubs                = undef,
   $osd_op_threads                = undef,
   $rbd_default_features          = undef,
-  # DEPRECATED PARAMETERS
+  #BLUESTORE
+  $enable_experimental_unrecoverable_data_corrupting_features = undef,
+  $osd_objecstore = undef,
+  $bluestore_fsck_on_mount = undef,
+  $bluestore_block_db_size = undef,
+  $bluestore_block_wal_size = undef,
+  $bluestore_block_size = undef,
+  #DEPRECATED PARAMETERS
   $set_osd_params                = false,
 ) {
   include ::ceph::params
@@ -211,6 +231,12 @@ this module to assign values and will be removed in a future release.')
       'global/cluster_network':              value => $cluster_network;
       'global/public_network':               value => $public_network;
       'global/public_addr':                  value => $public_addr;
+      'global/enable_experimental_unrecoverable_data_corrupting_features': value => $enable_experimental_unrecoverable_data_corrupting_features;
+      'global/osd_objecstore':               value => $osd_objecstore;
+      'global/bluestore_fsck_on_mount':      value => $bluestore_fsck_on_mount;
+      'global/bluestore_block_db_size':      value => $bluestore_block_db_size;
+      'global/bluestore_block_wal_size':     value => $bluestore_block_wal_size;
+      'global/bluestore_block_size':         value => $bluestore_block_size;
       'osd/osd_journal_size':                value => $osd_journal_size;
       'client/rbd_default_features':         value => $rbd_default_features;
     }
