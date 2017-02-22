@@ -275,6 +275,7 @@ this module to assign values and will be removed in a future release.')
 # This section will be moved up with the rest of the non-auth settings in the next release and the set_osd_params flag will be removed
     if $set_osd_params {
       ceph_config {
+        'osd/osd_objecstore':                value => $osd_objecstore;
         'osd/osd_max_backfills':             value => $osd_max_backfills;
         'osd/osd_recovery_max_active':       value => $osd_recovery_max_active;
         'osd/osd_recovery_op_priority':      value => $osd_recovery_op_priority;
