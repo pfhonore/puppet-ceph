@@ -50,7 +50,7 @@
 #
 define ceph::osd (
   $ensure = present,
-  $objectstore=undef,
+  $bluestore="false",
   $journal = undef,
   $cluster = undef,
   $exec_timeout = $::ceph::params::exec_timeout,
@@ -169,7 +169,7 @@ if ! test -b ${data} ; then
         chown -h ceph:ceph ${data}
     fi
 fi
-if $objectstore == "bluestore" ; then
+if $bluestore == "true" ; then
   ceph-disk prepare ${cluster_option} ${fsid_option} --bluestore ${data}
 else
   ceph-disk prepare ${cluster_option} ${fsid_option} ${data} ${journal}
