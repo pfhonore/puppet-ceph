@@ -169,7 +169,7 @@ if ! test -b ${data} ; then
         chown -h ceph:ceph ${data}
     fi
 fi
-if $objectstore = "bluestore" ; then
+if $objectstore == "bluestore" ; then
   ceph-disk prepare ${cluster_option} ${fsid_option} --bluestore ${data}
 else
   ceph-disk prepare ${cluster_option} ${fsid_option} ${data} ${journal}
