@@ -50,6 +50,7 @@
 #
 define ceph::osd (
   $ensure = present,
+  $blusestore=undef,
   $journal = undef,
   $cluster = undef,
   $exec_timeout = $::ceph::params::exec_timeout,
