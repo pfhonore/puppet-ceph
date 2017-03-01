@@ -33,7 +33,7 @@ Puppet::Type.type(:ceph_config).provide(
   end
 
   def self.file_path
-    '/etc/ceph/ceph.conf'
+    '/etc/ceph/cephir.conf'
   end
 
   # required to be able to hack the path in unit tests

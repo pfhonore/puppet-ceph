@@ -126,7 +126,7 @@ define ceph::rgw::apache_fastcgi (
     group   => 'root',
     mode    => '0750',
     content => "#!/bin/sh
-exec /usr/bin/radosgw -c /etc/ceph/ceph.conf -n ${name}",
+exec /usr/bin/radosgw -c /etc/ceph/cephir.conf -n ${name}",
   }
 
   File[$fcgi_file]
