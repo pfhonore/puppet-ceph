@@ -46,7 +46,7 @@ describe 'ceph::rgw' do
       it { is_expected.to contain_package('radosgw').with('ensure' => 'installed') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/user').with_value('www-data') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/ceph.client.radosgw.gateway.keyring') }
+      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
@@ -143,7 +143,7 @@ describe 'ceph::rgw' do
       it { is_expected.to contain_package('radosgw').with('ensure' => 'installed') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/user').with_value('www-data') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/ceph.client.radosgw.gateway.keyring') }
+      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
@@ -238,7 +238,7 @@ describe 'ceph::rgw' do
       it { is_expected.to contain_package('ceph-radosgw').with('ensure' => 'installed') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/user').with_value('apache') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/ceph.client.radosgw.gateway.keyring') }
+      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
       it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }

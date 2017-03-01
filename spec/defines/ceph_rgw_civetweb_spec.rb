@@ -36,7 +36,7 @@ describe 'ceph::rgw' do
       end
       it { is_expected.to contain_ceph_config('client.radosgw.civetweb/user').with_value("#{platform_params[:user]}") }
       it { is_expected.to contain_ceph_config('client.radosgw.civetweb/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.civetweb/keyring').with_value('/etc/ceph/ceph.client.radosgw.civetweb.keyring') }
+      it { is_expected.to contain_ceph_config('client.radosgw.civetweb/keyring').with_value('/etc/ceph/cephir.client.radosgw.civetweb.keyring') }
       it { is_expected.to contain_ceph_config('client.radosgw.civetweb/log_file').with_value('/var/log/ceph/radosgw.log') }
       it { is_expected.to_not contain_ceph_config('client.radosgw.civetweb/rgw_frontends') }
     end
@@ -55,7 +55,7 @@ describe 'ceph::rgw' do
       it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_frontends').with_value('civetweb port=7481') }
       it { is_expected.to contain_ceph_config('client.radosgw.custom/user').with_value('root') }
       it { is_expected.to contain_ceph_config('client.radosgw.custom/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.client.radosgw.custom.keyring') }
+      it { is_expected.to contain_ceph_config('client.radosgw.custom/keyring').with_value('/etc/ceph/cephir.client.radosgw.custom.keyring') }
       it { is_expected.to contain_ceph_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/radosgw.log') }
     end
 

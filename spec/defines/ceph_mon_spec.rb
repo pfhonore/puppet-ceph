@@ -76,10 +76,10 @@ mon_data=$(ceph-mon --cluster ceph --id A --show-config-value mon_data) || exit 
 # if ceph-mon fails then the mon is probably not configured yet
 test -e $mon_data/done
 ') }
-      it { is_expected.to contain_exec('ceph-mon-ceph.client.admin.keyring-A').with(
+      it { is_expected.to contain_exec('ceph-mon-cephir.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-touch /etc/ceph/ceph.client.admin.keyring'
+touch /etc/ceph/cephir.client.admin.keyring'
        ) }
       it { is_expected.to contain_exec('ceph-mon-mkfs-A').with(
         'command' => "/bin/true # comment to satisfy puppet syntax requirements
@@ -128,10 +128,10 @@ fi
       end
 
       it { is_expected.to contain_service('ceph-mon-A').with('ensure' => 'running') }
-      it { is_expected.to contain_exec('ceph-mon-ceph.client.admin.keyring-A').with(
+      it { is_expected.to contain_exec('ceph-mon-cephir.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-touch /etc/ceph/ceph.client.admin.keyring'
+touch /etc/ceph/cephir.client.admin.keyring'
        ) }
       it { is_expected.to contain_exec('ceph-mon-mkfs-A').with(
         'command' => "/bin/true # comment to satisfy puppet syntax requirements
@@ -306,10 +306,10 @@ mon_data=$(ceph-mon --cluster ceph --id A --show-config-value mon_data) || exit 
 # if ceph-mon fails then the mon is probably not configured yet
 test -e $mon_data/done
 ') }
-      it { is_expected.to contain_exec('ceph-mon-ceph.client.admin.keyring-A').with(
+      it { is_expected.to contain_exec('ceph-mon-cephir.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-touch /etc/ceph/ceph.client.admin.keyring'
+touch /etc/ceph/cephir.client.admin.keyring'
        ) }
       it { is_expected.to contain_exec('ceph-mon-mkfs-A').with(
         'command' => "/bin/true # comment to satisfy puppet syntax requirements
@@ -358,10 +358,10 @@ fi
       end
 
       it { is_expected.to contain_service('ceph-mon-A').with('ensure' => 'running') }
-      it { is_expected.to contain_exec('ceph-mon-ceph.client.admin.keyring-A').with(
+      it { is_expected.to contain_exec('ceph-mon-cephir.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-touch /etc/ceph/ceph.client.admin.keyring'
+touch /etc/ceph/cephir.client.admin.keyring'
        ) }
       it { is_expected.to contain_exec('ceph-mon-mkfs-A').with(
         'command' => "/bin/true # comment to satisfy puppet syntax requirements
@@ -535,13 +535,13 @@ mon_data=$(ceph-mon --cluster ceph --id A --show-config-value mon_data) || exit 
 # if ceph-mon fails then the mon is probably not configured yet
 test -e $mon_data/done
 ') }
-      it { is_expected.to contain_exec('ceph-mon-ceph.client.admin.keyring-A').with(
+      it { is_expected.to contain_exec('ceph-mon-cephir.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-touch /etc/ceph/ceph.client.admin.keyring',
+touch /etc/ceph/cephir.client.admin.keyring',
         'unless'  => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-test -e /etc/ceph/ceph.client.admin.keyring'
+test -e /etc/ceph/cephir.client.admin.keyring'
        ) }
       it { is_expected.to contain_exec('ceph-mon-mkfs-A').with(
         'command' => "/bin/true # comment to satisfy puppet syntax requirements
@@ -595,10 +595,10 @@ test ! -e /tmp/ceph-mon-keyring-A
       end
 
       it { is_expected.to contain_service('ceph-mon-A').with('ensure' => 'running') }
-      it { is_expected.to contain_exec('ceph-mon-ceph.client.admin.keyring-A').with(
+      it { is_expected.to contain_exec('ceph-mon-cephir.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-touch /etc/ceph/ceph.client.admin.keyring'
+touch /etc/ceph/cephir.client.admin.keyring'
        ) }
       it { is_expected.to contain_exec('ceph-mon-mkfs-A').with(
         'command' => "/bin/true # comment to satisfy puppet syntax requirements
