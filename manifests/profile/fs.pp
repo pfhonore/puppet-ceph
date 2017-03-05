@@ -22,7 +22,7 @@
 class cephir::profile::fs {
   require ::cephir::profile::base
 
-  cephir::fs { $ceph::profile::params::fs_name:
+  cephir::fs { $cephir::profile::params::fs_name:
     metadata_pool => $cephir::profile::params::fs_metadata_pool,
     data_pool     => $cephir::profile::params::fs_data_pool,
   }

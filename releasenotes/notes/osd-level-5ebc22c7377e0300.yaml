@@ -7,7 +7,7 @@ features:
     `osd_recovery_max_single_start`, `osd/osd_recovery_op_priority`,
     `osd/osd_op_threads`
 upgrade:
-  - when upgrading, move any usage of cephir::conf to ceph::init for the
+  - when upgrading, move any usage of cephir::conf to cephir::init for the
     following parameters `osd/osd_max_backfills`,
     `osd_max_scrubs`, `osd/osd_recovery_max_active`,
     `osd_recovery_max_single_start`, `osd/osd_recovery_op_priority`,

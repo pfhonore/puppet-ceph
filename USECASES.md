@@ -4,7 +4,7 @@ Use Cases
 I want to try this module, heard of ceph, want to see it in action
 ------------------------------------------------------------------
 
-I want to run it on a virtual machine, all in one. The **cephir::repo** class will enable the official ceph repository with the most current branch selected. The **ceph** class will create a configuration file with no authentication enabled. The **ceph::mon** resource configures and runs a monitor to which a **ceph::osd** daemon will connect to provide disk storage backed by the /srv/data folder (note that storing OSD data on an existing filesystem is only recommended for simple tests like this one).
+I want to run it on a virtual machine, all in one. The **cephir::repo** class will enable the official ceph repository with the most current branch selected. The **ceph** class will create a configuration file with no authentication enabled. The **cephir::mon** resource configures and runs a monitor to which a **ceph::osd** daemon will connect to provide disk storage backed by the /srv/data folder (note that storing OSD data on an existing filesystem is only recommended for simple tests like this one).
 
 * install puppet and this module and its dependences (see metadata.json)
 * paste the snippet above into /tmp/ceph.puppet
