@@ -24,7 +24,7 @@ describe 'cephir::profile::mds' do
     it { is_expected.to contain_class('cephir::mds').with(
       'public_addr' => '10.11.12.2',
     )}
-    it { is_expected.to contain_ceph__key('mds.myhostname').with(
+    it { is_expected.to contain_cephir__key('mds.myhostname').with(
       :cap_mon      => 'allow profile mds',
       :cap_osd      => 'allow rwx',
       :cap_mds      => 'allow',

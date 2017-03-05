@@ -15,27 +15,27 @@
 # Author: Andrew Woodward <xarses>
 
 require 'puppet'
-require 'puppet/type/ceph_config'
+require 'puppet/type/cephir_config'
 
-describe 'Puppet::Type.type(:ceph_config)' do
+describe 'Puppet::Type.type(:cephir_config)' do
 
   before :each do
-    @ceph_config = Puppet::Type.type(:ceph_config).new(
-      :name => 'global/ceph_is_foo', :value => 'bar')
+    @cephir_config = Puppet::Type.type(:ceph_config).new(
+      :name => 'global/cephir_is_foo', :value => 'bar')
   end
 
   it 'should work bascily' do
-    @ceph_config[:value] = 'max'
-    expect(@ceph_config[:value]).to eq('max')
+    @cephir_config[:value] = 'max'
+    expect(@cephir_config[:value]).to eq('max')
   end
 
   it 'should convert true to True' do
-    @ceph_config[:value] = 'tRuE'
-    expect(@ceph_config[:value]).to eq('True')
+    @cephir_config[:value] = 'tRuE'
+    expect(@cephir_config[:value]).to eq('True')
   end
 
   it 'should convert false to False' do
-    @ceph_config[:value] = 'fAlSe'
-    expect(@ceph_config[:value]).to eq('False')
+    @cephir_config[:value] = 'fAlSe'
+    expect(@cephir_config[:value]).to eq('False')
   end
 end

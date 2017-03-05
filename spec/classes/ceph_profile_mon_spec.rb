@@ -21,7 +21,7 @@ describe 'cephir::profile::mon' do
 
   shared_examples_for 'ceph profile mon' do
 
-    it { is_expected.to contain_ceph__mon('first').with(
+    it { is_expected.to contain_cephir__mon('first').with(
       :authentication_type => 'cephx',
       :key                 => 'AQATGHJTUCBqIBAA7M2yafV1xctn1pgr3GcKPg==',
       :public_addr         => '10.11.12.2')

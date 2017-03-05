@@ -44,13 +44,13 @@ describe 'cephir::rgw' do
       end
 
       it { is_expected.to contain_package('radosgw').with('ensure' => 'installed') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/user').with_value('www-data') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_socket_path').with_value('/tmp/radosgw.sock') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/user').with_value('www-data') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/host').with_value('myhost') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_socket_path').with_value('/tmp/radosgw.sock') }
 
       it { is_expected.to contain_file('/var/lib/ceph/radosgw').with({
         'ensure'                  => 'directory',
@@ -96,14 +96,14 @@ describe 'cephir::rgw' do
 
       it { is_expected.to contain_package('pkgradosgw').with('ensure' => 'installed') }
 
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.radosgw.custom.keyring') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/mylogfile.log') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_dns_name').with_value('mydns.hostname') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_print_continue').with_value(true) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_socket_path').with_value('/some/location/radosgw.sock') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_port').with_value(1111) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/user').with_value('wwwuser') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/host').with_value('myhost') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.radosgw.custom.keyring') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/mylogfile.log') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_dns_name').with_value('mydns.hostname') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_print_continue').with_value(true) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_socket_path').with_value('/some/location/radosgw.sock') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_port').with_value(1111) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/user').with_value('wwwuser') }
 
       it { is_expected.to contain_file('/var/lib/ceph/radosgw/ceph-radosgw.custom').with( {
         'ensure'                  => 'directory',
@@ -141,13 +141,13 @@ describe 'cephir::rgw' do
       end
 
       it { is_expected.to contain_package('radosgw').with('ensure' => 'installed') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/user').with_value('www-data') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_socket_path').with_value('/tmp/radosgw.sock') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/user').with_value('www-data') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/host').with_value('myhost') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_socket_path').with_value('/tmp/radosgw.sock') }
 
       it { is_expected.to contain_file('/var/lib/ceph/radosgw').with({
         'ensure'                  => 'directory',
@@ -191,14 +191,14 @@ describe 'cephir::rgw' do
 
       it { is_expected.to contain_package('pkgradosgw').with('ensure' => 'installed') }
 
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.radosgw.custom.keyring') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/mylogfile.log') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_dns_name').with_value('mydns.hostname') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_print_continue').with_value(true) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_socket_path').with_value('/some/location/radosgw.sock') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_port').with_value(1111) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/user').with_value('wwwuser') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/host').with_value('myhost') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.radosgw.custom.keyring') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/mylogfile.log') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_dns_name').with_value('mydns.hostname') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_print_continue').with_value(true) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_socket_path').with_value('/some/location/radosgw.sock') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_port').with_value(1111) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/user').with_value('wwwuser') }
 
       it { is_expected.to contain_file('/var/lib/ceph/radosgw/ceph-radosgw.custom').with( {
         'ensure'                  => 'directory',
@@ -236,13 +236,13 @@ describe 'cephir::rgw' do
       end
 
       it { is_expected.to contain_package('ceph-radosgw').with('ensure' => 'installed') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/user').with_value('apache') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_socket_path').with_value('/tmp/radosgw.sock') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/user').with_value('apache') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/host').with_value('myhost') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/keyring').with_value('/etc/ceph/cephir.client.radosgw.gateway.keyring') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/log_file').with_value('/var/log/ceph/radosgw.log') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_dns_name').with_value('myhost.domain') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_print_continue').with_value(false) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_socket_path').with_value('/tmp/radosgw.sock') }
 
       it { is_expected.to contain_file('/var/lib/ceph/radosgw').with({
         'ensure'                  => 'directory',
@@ -286,14 +286,14 @@ describe 'cephir::rgw' do
 
       it { is_expected.to contain_package('pkgradosgw').with('ensure' => 'installed') }
 
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/host').with_value('myhost') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.radosgw.custom.keyring') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/mylogfile.log') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_dns_name').with_value('mydns.hostname') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_print_continue').with_value(true) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_socket_path').with_value('/some/location/radosgw.sock') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_port').with_value(1111) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/user').with_value('wwwuser') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/host').with_value('myhost') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/keyring').with_value('/etc/ceph/ceph.radosgw.custom.keyring') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/log_file').with_value('/var/log/ceph/mylogfile.log') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_dns_name').with_value('mydns.hostname') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_print_continue').with_value(true) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_socket_path').with_value('/some/location/radosgw.sock') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_port').with_value(1111) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/user').with_value('wwwuser') }
 
       it { is_expected.to contain_file('/var/lib/ceph/radosgw/ceph-radosgw.custom').with( {
         'ensure'                  => 'directory',

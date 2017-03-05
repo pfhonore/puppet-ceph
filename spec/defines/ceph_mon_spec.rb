@@ -181,7 +181,7 @@ fi
       end
 
       it { is_expected.to contain_service('ceph-mon-A').with('ensure' => 'running') }
-      it { is_expected.to contain_ceph_config('mon.A/public_addr').with_value("127.0.0.1") }
+      it { is_expected.to contain_cephir_config('mon.A/public_addr').with_value("127.0.0.1") }
       it { is_expected.to contain_exec('ceph-mon-testcluster.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
@@ -411,7 +411,7 @@ fi
       end
 
       it { is_expected.to contain_service('ceph-mon-A').with('ensure' => 'running') }
-      it { is_expected.to contain_ceph_config('mon.A/public_addr').with_value("127.0.0.1") }
+      it { is_expected.to contain_cephir_config('mon.A/public_addr').with_value("127.0.0.1") }
       it { is_expected.to contain_exec('ceph-mon-testcluster.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex
@@ -648,7 +648,7 @@ fi
       end
 
       it { is_expected.to contain_service('ceph-mon-A').with('ensure' => 'running') }
-      it { is_expected.to contain_ceph_config('mon.A/public_addr').with_value("127.0.0.1") }
+      it { is_expected.to contain_cephir_config('mon.A/public_addr').with_value("127.0.0.1") }
       it { is_expected.to contain_exec('ceph-mon-testcluster.client.admin.keyring-A').with(
         'command' => '/bin/true # comment to satisfy puppet syntax requirements
 set -ex

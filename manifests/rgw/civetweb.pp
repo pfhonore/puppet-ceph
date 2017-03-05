@@ -29,7 +29,7 @@ define cephir::rgw::civetweb (
     fail("Define name must be started with 'radosgw.'")
   }
 
-  ceph_config {
+  cephir_config {
     "client.${name}/rgw_frontends": value => $rgw_frontends;
   }
 }

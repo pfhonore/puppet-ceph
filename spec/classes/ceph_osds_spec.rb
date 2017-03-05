@@ -36,11 +36,11 @@ describe 'cephir::osds' do
     end
 
     it {
-      is_expected.to contain_ceph__osd('/dev/sdb').with(
+      is_expected.to contain_cephir__osd('/dev/sdb').with(
         :ensure  => 'present',
         :journal => '/srv/journal',
         :cluster => 'CLUSTER')
-      is_expected.to contain_ceph__osd('/srv/data').with(
+      is_expected.to contain_cephir__osd('/srv/data').with(
         :ensure  => 'present',
         :cluster => 'CLUSTER')
       is_expected.not_to contain_sysctl__value('kernel.pid_max')

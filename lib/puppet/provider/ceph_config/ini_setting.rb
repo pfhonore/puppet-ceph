@@ -15,7 +15,7 @@
 # Author: Dan Bode <bodepd@gmail.com>
 # Author: Andrew Woodward <xarses>
 
-Puppet::Type.type(:ceph_config).provide(
+Puppet::Type.type(:cephir_config).provide(
   :ini_setting,
   :parent => Puppet::Type.type(:ini_setting).provider(:ruby)
 ) do

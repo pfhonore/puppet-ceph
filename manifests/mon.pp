@@ -106,7 +106,7 @@ define cephir::mon (
 
     if $ensure == present {
 
-      $ceph_mkfs = "ceph-mon-mkfs-${id}"
+      $cephir_mkfs = "ceph-mon-mkfs-${id}"
 
       if $authentication_type == 'cephx' {
         if ! $key and ! $keyring {
@@ -138,7 +138,7 @@ test -e \$mon_data/done
 ",
           }
 
-          Exec["create-keyring-${id}"] -> Exec[$ceph_mkfs]
+          Exec["create-keyring-${id}"] -> Exec[$cephir_mkfs]
 
         } else {
           $keyring_path = $keyring
@@ -149,7 +149,7 @@ test -e \$mon_data/done
       }
 
       if $public_addr {
-        ceph_config {
+        cephir_config {
           "mon.${id}/public_addr": value => $public_addr;
         }
       }
@@ -165,7 +165,7 @@ set -ex
 test -e /etc/ceph/${cluster_name}.client.admin.keyring",
       }
       ->
-      exec { $ceph_mkfs:
+      exec { $cephir_mkfs:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 mon_data=\$(ceph-mon ${cluster_option} --id ${id} --show-config-value mon_data)
@@ -213,7 +213,7 @@ test -d  \$mon_data
 
       if $authentication_type == 'cephx' {
         if $key {
-          Exec[$ceph_mkfs] -> Exec["rm-keyring-${id}"]
+          Exec[$cephir_mkfs] -> Exec["rm-keyring-${id}"]
 
           exec { "rm-keyring-${id}":
             command => "/bin/rm ${keyring_path}",
@@ -245,7 +245,7 @@ test ! -d \$mon_data
         logoutput => true,
         timeout   => $exec_timeout,
       } ->
-      ceph_config {
+      cephir_config {
         "mon.${id}/public_addr": ensure => absent;
       } -> Package<| tag == 'ceph' |>
     } else {

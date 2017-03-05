@@ -93,7 +93,7 @@ define cephir::rgw::keystone (
     fail("Define name must be started with 'radosgw.'")
   }
 
-  ceph_config {
+  cephir_config {
     "client.${name}/rgw_keystone_url":                 value => $rgw_keystone_url;
     "client.${name}/rgw_keystone_accepted_roles":      value => join(any2array($rgw_keystone_accepted_roles), ',');
     "client.${name}/rgw_keystone_token_cache_size":    value => $rgw_keystone_token_cache_size;
@@ -105,7 +105,7 @@ define cephir::rgw::keystone (
     {
       fail( 'Missing rgw_keystone_admin_token for Keystone V2 integration')
     }
-    ceph_config {
+    cephir_config {
       "client.${name}/rgw_keystone_admin_token": value => $rgw_keystone_admin_token;
     }
   } elsif $rgw_keystone_version == 'v3' {
@@ -116,7 +116,7 @@ define cephir::rgw::keystone (
     {
       fail( 'Incomplete parameters for Keystone V3 integration')
     }
-    ceph_config {
+    cephir_config {
       "client.${name}/rgw_keystone_api_version":    value => 3;
       "client.${name}/rgw_keystone_admin_domain":   value => $rgw_keystone_admin_domain;
       "client.${name}/rgw_keystone_admin_project":  value => $rgw_keystone_admin_project;
@@ -140,7 +140,7 @@ define cephir::rgw::keystone (
       group  => 'root',
     }
 
-    ceph_config {
+    cephir_config {
       "client.${name}/nss_db_path":                      value => $nss_db_path;
       "client.${name}/rgw_keystone_revocation_interval": value => $rgw_keystone_revocation_interval;
     }
@@ -178,7 +178,7 @@ certutil -d ${nss_db_path} -L | grep ^signing_cert
     -> Exec["${name}-nssdb-signing"]
     ~> Service<| tag == 'ceph-radosgw' |>
   } else {
-    ceph_config {
+    cephir_config {
       "client.${name}/nss_db_path":                      ensure => absent;
       "client.${name}/rgw_keystone_revocation_interval": ensure => absent;
     }

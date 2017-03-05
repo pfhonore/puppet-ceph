@@ -20,7 +20,7 @@ I want to run it on a virtual machine, all in one. The **cephir::repo** class wi
       osd_pool_default_size      => '1',
       osd_pool_default_min_size  => '1',
     }
-    ceph_config {
+    cephir_config {
      'global/osd_journal_size': value => '100';
     }
     cephir::mon { 'a':

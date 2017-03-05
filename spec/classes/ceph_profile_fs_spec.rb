@@ -19,7 +19,7 @@ describe 'cephir::profile::fs' do
 
   shared_examples_for 'ceph profile fs' do
 
-    it { is_expected.to contain_ceph__fs('fs_name').with(
+    it { is_expected.to contain_cephir__fs('fs_name').with(
       'metadata_pool' => 'metadata_pool',
       'data_pool' => 'data_pool'
     )}

@@ -45,7 +45,7 @@
 # [*syslog*] Whether or not to log to syslog.
 #   Optional. Default is true.
 #
-# [*ceph_apache_repo*] Whether to require the CEPH apache repo (cephir::repo::fastcgi).
+# [*cephir_apache_repo*] Whether to require the CEPH apache repo (cephir::repo::fastcgi).
 #   Optional. Default is true. Check:
 #   http://ceph.com/docs/master/install/install-ceph-gateway/
 #   for more info on repository recommendations.
@@ -58,7 +58,7 @@ define cephir::rgw::apache (
   $rgw_port         = 80,
   $rgw_socket_path  = $::cephir::params::rgw_socket_path,
   $syslog           = true,
-  $ceph_apache_repo = true,
+  $cephir_apache_repo = true,
 ) {
 
   warning ('Class rgw::apache is deprecated in favor of rgw::apache_fastcgi')
@@ -71,6 +71,6 @@ define cephir::rgw::apache (
     rgw_port         => $rgw_port,
     rgw_socket_path  => $rgw_socket_path,
     syslog           => $syslog,
-    ceph_apache_repo => $ceph_apache_repo,
+    cephir_apache_repo => $ceph_apache_repo,
   }
 }

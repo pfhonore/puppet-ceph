@@ -28,7 +28,7 @@ describe 'ceph mon osd' do
             release     => 'jewel',
             enable_sig  => true,
             enable_epel => false,
-            ceph_mirror => $ceph_mirror,
+            cephir_mirror => $ceph_mirror,
           }
           class { 'ceph':
             fsid                         => '82274746-9a2c-426b-8c51-107fb0d890c6',
@@ -39,7 +39,7 @@ describe 'ceph mon osd' do
             osd_max_object_namespace_len => '64',
             osd_max_object_name_len      => '256',
           }
-          ceph_config {
+          cephir_config {
            'global/osd_journal_size':             value => '100';
           }
           cephir::mon { 'a':

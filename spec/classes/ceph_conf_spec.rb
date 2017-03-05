@@ -34,8 +34,8 @@ describe 'cephir::conf' do
   end
 
   it {
-    is_expected.to contain_ceph_config('A').with('value' => "AA VALUE")
-    is_expected.to contain_ceph_config('B').with('value' => "DEFAULT")
+    is_expected.to contain_cephir_config('A').with('value' => "AA VALUE")
+    is_expected.to contain_cephir_config('B').with('value' => "DEFAULT")
   }
 
 end

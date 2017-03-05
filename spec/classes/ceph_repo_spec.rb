@@ -50,7 +50,7 @@ describe 'cephir::repo' do
     describe "when overriding ceph mirror" do
       let :params do
         {
-         :ceph_mirror => 'http://myserver.com/debian-jewel/'
+         :cephir_mirror => 'http://myserver.com/debian-jewel/'
         }
       end
 

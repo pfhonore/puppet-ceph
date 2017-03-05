@@ -60,13 +60,13 @@ describe 'cephir::rgw::keystone' do
         }
       end
 
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_token').with_value('defaulttoken') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_accepted_roles').with_value('_member_, Member') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_token_cache_size').with_value(500) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_s3_auth_use_keystone').with_value(true) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_revocation_interval').with_value(600) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/nss_db_path').with_value('/var/lib/ceph/nss') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_token').with_value('defaulttoken') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_accepted_roles').with_value('_member_, Member') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_token_cache_size').with_value(500) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_s3_auth_use_keystone').with_value(true) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_revocation_interval').with_value(600) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/nss_db_path').with_value('/var/lib/ceph/nss') }
 
       it { is_expected.to contain_exec('radosgw.gateway-nssdb-ca').with(
          'command' => "/bin/true  # comment to satisfy puppet syntax requirements
@@ -116,13 +116,13 @@ wget --no-check-certificate http://keystone.default:5000/v2.0/certificates/signi
         }
       end
 
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_url').with_value('http://keystone.custom:5000') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_admin_token').with_value('mytoken') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_accepted_roles').with_value('_role1_,role2') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_token_cache_size').with_value(100) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_s3_auth_use_keystone').with_value(false) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_revocation_interval').with_ensure('absent') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/nss_db_path').with_ensure('absent') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_url').with_value('http://keystone.custom:5000') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_admin_token').with_value('mytoken') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_accepted_roles').with_value('_role1_,role2') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_token_cache_size').with_value(100) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_s3_auth_use_keystone').with_value(false) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_revocation_interval').with_ensure('absent') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/nss_db_path').with_ensure('absent') }
 
       it { is_expected.to_not contain_exec('radosgw.custom-nssdb-ca').with(
          'command' => "/bin/true  # comment to satisfy puppet syntax requirements
@@ -171,12 +171,12 @@ wget --no-check-certificate http://keystone.custom:5000/v2.0/certificates/signin
         }
       end
 
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_domain').with_value('default') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_project').with_value('openstack') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_user').with_value('rgwuser') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_password').with_value('123456') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_token').with_ensure('absent') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_domain').with_value('default') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_project').with_value('openstack') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_user').with_value('rgwuser') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_password').with_value('123456') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_token').with_ensure('absent') }
 
     end
 
@@ -221,13 +221,13 @@ wget --no-check-certificate http://keystone.custom:5000/v2.0/certificates/signin
         }
       end
 
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_token').with_value('defaulttoken') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_accepted_roles').with_value('_member_, Member') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_token_cache_size').with_value(500) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_s3_auth_use_keystone').with_value(true) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_revocation_interval').with_value(600) }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/nss_db_path').with_value('/var/lib/ceph/nss') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_token').with_value('defaulttoken') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_accepted_roles').with_value('_member_, Member') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_token_cache_size').with_value(500) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_s3_auth_use_keystone').with_value(true) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_revocation_interval').with_value(600) }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/nss_db_path').with_value('/var/lib/ceph/nss') }
 
       it { is_expected.to contain_exec('radosgw.gateway-nssdb-ca').with(
          'command' => "/bin/true  # comment to satisfy puppet syntax requirements
@@ -277,13 +277,13 @@ wget --no-check-certificate http://keystone.default:5000/v2.0/certificates/signi
         }
       end
 
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_url').with_value('http://keystone.custom:5000') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_admin_token').with_value('mytoken') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_accepted_roles').with_value('_role1_,role2') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_token_cache_size').with_value(100) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_s3_auth_use_keystone').with_value(false) }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/rgw_keystone_revocation_interval').with_ensure('absent') }
-      it { is_expected.to contain_ceph_config('client.radosgw.custom/nss_db_path').with_ensure('absent') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_url').with_value('http://keystone.custom:5000') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_admin_token').with_value('mytoken') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_accepted_roles').with_value('_role1_,role2') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_token_cache_size').with_value(100) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_s3_auth_use_keystone').with_value(false) }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/rgw_keystone_revocation_interval').with_ensure('absent') }
+      it { is_expected.to contain_cephir_config('client.radosgw.custom/nss_db_path').with_ensure('absent') }
 
       it { is_expected.to_not contain_exec('radosgw.custom-nssdb-ca').with(
          'command' => "/bin/true  # comment to satisfy puppet syntax requirements
@@ -332,12 +332,12 @@ wget --no-check-certificate http://keystone.custom:5000/v2.0/certificates/signin
         }
       end
 
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_domain').with_value('default') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_project').with_value('openstack') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_user').with_value('rgwuser') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_password').with_value('123456') }
-      it { is_expected.to contain_ceph_config('client.radosgw.gateway/rgw_keystone_admin_token').with_ensure('absent') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_url').with_value('http://keystone.default:5000') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_domain').with_value('default') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_project').with_value('openstack') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_user').with_value('rgwuser') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_password').with_value('123456') }
+      it { is_expected.to contain_cephir_config('client.radosgw.gateway/rgw_keystone_admin_token').with_ensure('absent') }
 
     end
 

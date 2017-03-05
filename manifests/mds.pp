@@ -101,17 +101,17 @@ class cephir::mds (
   }
 
   if $mds_activate {
-    ceph_config {
+    cephir_config {
       'mds/mds_data': value => $mds_data_real;
       'mds/keyring':  value => $keyring_real;
     }
     if $public_addr {
-      ceph_config {
+      cephir_config {
         "mds.${mds_id}/public_addr": value => $public_addr;
       }
     }
   } else {
-    ceph_config {
+    cephir_config {
       'mds/mds_data': ensure => absent;
       'mds/keyring':  ensure => absent;
     }

@@ -56,7 +56,7 @@
 #   https://wiki.centos.org/SpecialInterestGroup/Storage/
 #   Optional. Defaults to False in cephir::params.
 #
-# [*ceph_mirror*] Ceph mirror used to download packages.
+# [*cephir_mirror*] Ceph mirror used to download packages.
 #   Optional. Defaults to undef.
 #
 class cephir::repo (
@@ -68,16 +68,16 @@ class cephir::repo (
   $proxy_password = undef,
   $enable_epel    = true,
   $enable_sig     = $::cephir::params::enable_sig,
-  $ceph_mirror    = undef,
+  $cephir_mirror    = undef,
 ) inherits cephir::params {
   case $::osfamily {
     'Debian': {
       include ::apt
 
-      if $ceph_mirror {
-        $ceph_mirror_real = $ceph_mirror
+      if $cephir_mirror {
+        $cephir_mirror_real = $ceph_mirror
       } else {
-        $ceph_mirror_real = "http://download.ceph.com/debian-${release}/"
+        $cephir_mirror_real = "http://download.ceph.com/debian-${release}/"
         apt::key { 'ceph':
           ensure => $ensure,
           id     => '08B73419AC32B4E966C1A330E84AC2C0460F3994',
@@ -88,7 +88,7 @@ class cephir::repo (
 
       apt::source { 'ceph':
         ensure   => $ensure,
-        location => $ceph_mirror_real,
+        location => $cephir_mirror_real,
         release  => $::lsbdistcodename,
         tag      => 'ceph',
       }

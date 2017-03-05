@@ -43,7 +43,7 @@
 #
 # [*selinux_file_context*] The SELinux file context to apply
 #   on the directory backing the OSD service.
-#   Optional. Defaults to 'ceph_var_lib_t'
+#   Optional. Defaults to 'cephir_var_lib_t'
 #
 # [*fsid*] The ceph cluster FSID
 #   Optional. Defaults to $::cephir::profile::params::fsid
@@ -54,7 +54,7 @@ define cephir::osd (
   $journal = undef,
   $cluster = undef,
   $exec_timeout = $::cephir::params::exec_timeout,
-  $selinux_file_context = 'ceph_var_lib_t',
+  $selinux_file_context = 'cephir_var_lib_t',
   $fsid = $::cephir::profile::params::fsid,
   ) {
 
@@ -72,25 +72,25 @@ define cephir::osd (
 
     if $ensure == present {
 
-      $ceph_check_udev = "ceph-osd-check-udev-${name}"
-      $ceph_prepare = "ceph-osd-prepare-${name}"
-      $ceph_activate = "ceph-osd-activate-${name}"
-      $ceph_zap_osd = "ceph-osd-zap-${name}"
+      $cephir_check_udev = "ceph-osd-check-udev-${name}"
+      $cephir_prepare = "ceph-osd-prepare-${name}"
+      $cephir_activate = "ceph-osd-activate-${name}"
+      $cephir_zap_osd = "ceph-osd-zap-${name}"
 
-      Package<| tag == 'ceph' |> -> Exec[$ceph_check_udev]
-      Exec[$ceph_zap_osd] -> Exec[$ceph_check_udev]
-      Cephir_config<||> -> Exec[$ceph_prepare]
-      Ceph::Mon<||> -> Exec[$ceph_prepare]
-      Ceph::Key<||> -> Exec[$ceph_prepare]
+      Package<| tag == 'ceph' |> -> Exec[$cephir_check_udev]
+      Exec[$cephir_zap_osd] -> Exec[$ceph_check_udev]
+      Cephir_config<||> -> Exec[$cephir_prepare]
+      Ceph::Mon<||> -> Exec[$cephir_prepare]
+      Ceph::Key<||> -> Exec[$cephir_prepare]
 
       # Ensure none is activated before prepare is finished for all
       Exec<| tag == 'prepare' |> -> Exec<| tag == 'activate' |>
 
       if $journal {
-        $ceph_zap_journal = "ceph-osd-zap-${name}-${journal}"
-        Exec[$ceph_zap_osd] -> Exec[$ceph_zap_journal]
-        Exec[$ceph_zap_journal] -> Exec[$ceph_check_udev]
-        exec { $ceph_zap_journal:
+        $cephir_zap_journal = "ceph-osd-zap-${name}-${journal}"
+        Exec[$cephir_zap_osd] -> Exec[$ceph_zap_journal]
+        Exec[$cephir_zap_journal] -> Exec[$ceph_check_udev]
+        exec { $cephir_zap_journal:
           command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 if [ -b ${journal} ]; then
@@ -107,7 +107,7 @@ test $(parted -ms ${journal} p 2>&1 | egrep -c 'Error.*unrecognised disk label')
         }
       }
 
-      exec { $ceph_zap_osd:
+      exec { $cephir_zap_osd:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 if [ -b ${data} ]; then
@@ -125,7 +125,7 @@ test $(parted -ms ${data} p 2>&1 | egrep -c 'Error.*unrecognised disk label') -e
 
 
       $udev_rules_file = '/usr/lib/udev/rules.d/95-ceph-osd.rules'
-      exec { $ceph_check_udev:
+      exec { $cephir_check_udev:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 # Before Infernalis the udev rules race causing the activation to fail so we
 # disable them. More at: http://www.spinics.net/lists/ceph-devel/msg28436.html
@@ -141,11 +141,11 @@ test -f ${udev_rules_file} && test \$DISABLE_UDEV -eq 1
 
       if $fsid {
         $fsid_option = "--cluster-uuid ${fsid}"
-        $ceph_check_fsid_mismatch = "ceph-osd-check-fsid-mismatch-${name}"
-        Exec[$ceph_check_udev] -> Exec[$ceph_check_fsid_mismatch]
-        Exec[$ceph_check_fsid_mismatch] -> Exec[$ceph_prepare]
+        $cephir_check_fsid_mismatch = "ceph-osd-check-fsid-mismatch-${name}"
+        Exec[$cephir_check_udev] -> Exec[$ceph_check_fsid_mismatch]
+        Exec[$cephir_check_fsid_mismatch] -> Exec[$ceph_prepare]
         # return error if ${data} has fsid differing from ${fsid}, unless there is no fsid
-        exec { $ceph_check_fsid_mismatch:
+        exec { $cephir_check_fsid_mismatch:
           command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 test ${fsid} = \$(ceph-disk list ${data} | egrep -o '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}')
@@ -159,9 +159,9 @@ test -z \$(ceph-disk list ${data} | egrep -o '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a
         }
       }
 
-      Exec[$ceph_check_udev] -> Exec[$ceph_prepare]
+      Exec[$cephir_check_udev] -> Exec[$ceph_prepare]
       # ceph-disk: prepare should be idempotent http://tracker.ceph.com/issues/7475
-      exec { $ceph_prepare:
+      exec { $cephir_prepare:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 if ! test -b ${data} ; then
@@ -180,7 +180,7 @@ udevadm settle
         unless    => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 ceph-disk list | grep -E ' *${data}1? .*ceph data, (prepared|active)' ||
-{ test -f ${data}/fsid && test -f ${data}/ceph_fsid && test -f ${data}/magic ;}
+{ test -f ${data}/fsid && test -f ${data}/cephir_fsid && test -f ${data}/magic ;}
 ",
         logoutput => true,
         timeout   => $exec_timeout,
@@ -191,14 +191,14 @@ ceph-disk list | grep -E ' *${data}1? .*ceph data, (prepared|active)' ||
         exec { "fcontext_${name}":
           command => "semanage fcontext -a -t ${selinux_file_context} '${data}(/.*)?' && restorecon -R ${data}",
           path    => ['/usr/sbin', '/sbin', '/usr/bin', '/bin'],
-          require => [Package[$::cephir::params::pkg_policycoreutils],Exec[$ceph_prepare]],
-          before  => Exec[$ceph_activate],
+          require => [Package[$::cephir::params::pkg_policycoreutils],Exec[$cephir_prepare]],
+          before  => Exec[$cephir_activate],
           unless  => "test -b ${data} || (semanage fcontext -l | grep ${data})",
         }
       }
 
-      Exec[$ceph_prepare] -> Exec[$ceph_activate]
-      exec { $ceph_activate:
+      Exec[$cephir_prepare] -> Exec[$ceph_activate]
+      exec { $cephir_activate:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 if ! test -b ${data} ; then

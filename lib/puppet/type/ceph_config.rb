@@ -16,7 +16,7 @@
 # Author: Mathieu Gagne <mgagne>
 
 
-Puppet::Type.newtype(:ceph_config) do
+Puppet::Type.newtype(:cephir_config) do
 
   ensurable
 

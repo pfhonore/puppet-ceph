@@ -45,7 +45,7 @@
 # [*syslog*] Whether or not to log to syslog.
 #   Optional. Default is true.
 #
-# [*ceph_apache_repo*] Whether to require the CEPH apache repo (cephir::repo::fastcgi).
+# [*cephir_apache_repo*] Whether to require the CEPH apache repo (cephir::repo::fastcgi).
 #   Optional. Default is true. Check:
 #   http://ceph.com/docs/master/install/install-ceph-gateway/
 #   for more info on repository recommendations.
@@ -74,7 +74,7 @@ define cephir::rgw::apache_fastcgi (
   $rgw_port             = '80',
   $rgw_socket_path      = $::cephir::params::rgw_socket_path,
   $syslog               = true,
-  $ceph_apache_repo     = true,
+  $cephir_apache_repo     = true,
   $apache_mods          = false,
   $apache_vhost         = false,
   $apache_purge_configs = true,
@@ -134,7 +134,7 @@ exec /usr/bin/radosgw -c /etc/ceph/cephir.conf -n ${name}",
 
   # dependency on ceph apache repo if set
   $pkg_fastcgi = $::apache::params::mod_packages['fastcgi']
-  if $ceph_apache_repo {
+  if $cephir_apache_repo {
     case $::osfamily {
       'Debian': {
         Apt::Source['ceph-fastcgi']

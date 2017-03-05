@@ -98,7 +98,7 @@ define cephir::rgw (
     fail("Define name must be started with 'radosgw.'")
   }
 
-  ceph_config {
+  cephir_config {
     "client.${name}/host":               value => $::hostname;
     "client.${name}/keyring":            value => $keyring_path;
     "client.${name}/log_file":           value => $log_file;
@@ -116,17 +116,17 @@ define cephir::rgw (
   }
   elsif ( ( $frontend_type == 'apache-fastcgi' ) or ( $frontend_type == 'apache-proxy-fcgi' ) )
   {
-    ceph_config {
+    cephir_config {
       "client.${name}/rgw_dns_name":       value => $rgw_dns_name;
       "client.${name}/rgw_print_continue": value => $rgw_print_continue;
       "client.${name}/rgw_socket_path":    value => $rgw_socket_path;
     }
     if $frontend_type == 'apache-fastcgi' {
-      ceph_config {
+      cephir_config {
         "client.${name}/rgw_port": value => $rgw_port;
       }
     } elsif $frontend_type == 'apache-proxy-fcgi' {
-      ceph_config {
+      cephir_config {
         "client.${name}/rgw_frontends": value => $rgw_frontends;
       }
     }

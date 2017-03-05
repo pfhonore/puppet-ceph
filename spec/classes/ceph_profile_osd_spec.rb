@@ -27,8 +27,8 @@ describe 'cephir::profile::osd' do
       end
 
       it { is_expected.to contain_class('cephir::profile::client') }
-      it { is_expected.to contain_ceph__osd('/dev/sdc').with(:journal => '/dev/sdb') }
-      it { is_expected.to contain_ceph__osd('/dev/sdd').with(:journal => '/dev/sdb') }
+      it { is_expected.to contain_cephir__osd('/dev/sdc').with(:journal => '/dev/sdb') }
+      it { is_expected.to contain_cephir__osd('/dev/sdd').with(:journal => '/dev/sdb') }
     end
 
     context 'with the host specific first.yaml' do
@@ -38,7 +38,7 @@ describe 'cephir::profile::osd' do
       end
 
       it { is_expected.to contain_class('cephir::profile::client') }
-      it { is_expected.to contain_ceph__osd('/dev/sdb').with( :journal => '/srv/journal') }
+      it { is_expected.to contain_cephir__osd('/dev/sdb').with( :journal => '/srv/journal') }
     end
   end
 

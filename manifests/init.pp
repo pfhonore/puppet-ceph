@@ -147,7 +147,7 @@
 # DEPRECATED PARAMETERS
 #
 # [*set_osd_params*] disables setting osd params using this module by default as people
-#   calling ceph_config from in-house modules will get dup-declaration errors.
+#   calling cephir_config from in-house modules will get dup-declaration errors.
 #   Boolean.  Default false.
 #
 
@@ -210,7 +210,7 @@ this module to assign values and will be removed in a future release.')
     # Make sure ceph is installed before managing the configuration
     Package<| tag == 'ceph' |> -> Cephir_config<| |>
     # [global]
-    ceph_config {
+    cephir_config {
       'global/fsid':                         value => $fsid;
       'global/keyring':                      value => $keyring;
       'global/osd_pool_default_pg_num':      value => $osd_pool_default_pg_num;
@@ -246,25 +246,25 @@ this module to assign values and will be removed in a future release.')
     # define these here if they are set. Once this patch lands, we can update
     # p-o-i to leverage these parameters and ditch these if clauses.
     if $osd_max_object_name_len {
-      ceph_config {
+      cephir_config {
         'global/osd_max_object_name_len':      value => $osd_max_object_name_len;
       }
     }
     if $osd_max_object_namespace_len {
-      ceph_config {
+      cephir_config {
         'global/osd_max_object_namespace_len': value => $osd_max_object_namespace_len;
       }
     }
 
     if $authentication_type == 'cephx' {
-      ceph_config {
+      cephir_config {
         'global/auth_cluster_required': value => 'cephx';
         'global/auth_service_required': value => 'cephx';
         'global/auth_client_required':  value => 'cephx';
         'global/auth_supported':        value => 'cephx';
       }
     } else {
-      ceph_config {
+      cephir_config {
         'global/auth_cluster_required': value => 'none';
         'global/auth_service_required': value => 'none';
         'global/auth_client_required':  value => 'none';
@@ -274,7 +274,7 @@ this module to assign values and will be removed in a future release.')
 
 # This section will be moved up with the rest of the non-auth settings in the next release and the set_osd_params flag will be removed
     if $set_osd_params {
-      ceph_config {
+      cephir_config {
         'osd/osd_objecstore':                value => $osd_objecstore;
         'osd/osd_max_backfills':             value => $osd_max_backfills;
         'osd/osd_recovery_max_active':       value => $osd_recovery_max_active;
