@@ -73,7 +73,7 @@
 define cephir::key (
   $secret,
   $cluster = undef,
-  $keyring_path = "/etc/ceph/ceph.${name}.keyring",
+  $keyring_path = "/etc/ceph/cephir.${name}.keyring",
   $cap_mon = undef,
   $cap_osd = undef,
   $cap_mds = undef,
@@ -157,7 +157,7 @@ exit \$rv",
     }
 
     Ceph_config<||> -> Exec["ceph-injectkey-${name}"]
-    Ceph::Mon<||> -> Exec["ceph-injectkey-${name}"]
+    Cephir::Mon<||> -> Exec["ceph-injectkey-${name}"]
     # ceph auth import is idempotent, will just update pre-existing keys
     exec { "ceph-injectkey-${name}":
       command   => "/bin/true # comment to satisfy puppet syntax requirements
