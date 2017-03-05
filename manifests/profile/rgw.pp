@@ -15,20 +15,20 @@
 #
 # Author: Keith Schincke <keith.schincke@gmail.com>
 #
-# == Class: ceph::profile::rgw
+# == Class: cephir::profile::rgw
 #
 # Profile for Ceph rgw
 #
-class ceph::profile::rgw {
-  require ::ceph::profile::base
-  $rgw_name = $::ceph::profile::params::rgw_name ? {
+class cephir::profile::rgw {
+  require ::cephir::profile::base
+  $rgw_name = $::cephir::profile::params::rgw_name ? {
     undef   => 'radosgw.gateway',
-    default => $::ceph::profile::params::rgw_name,
+    default => $::cephir::profile::params::rgw_name,
   }
-  ceph::rgw { $rgw_name:
-    user               => $::ceph::profile::params::rgw_user,
-    rgw_print_continue => $::ceph::profile::params::rgw_print_continue,
-    frontend_type      => $::ceph::profile::params::frontend_type,
-    rgw_frontends      => $::ceph::profile::params::rgw_frontends,
+  cephir::rgw { $rgw_name:
+    user               => $::cephir::profile::params::rgw_user,
+    rgw_print_continue => $::cephir::profile::params::rgw_print_continue,
+    frontend_type      => $::cephir::profile::params::frontend_type,
+    rgw_frontends      => $::cephir::profile::params::rgw_frontends,
   }
 }

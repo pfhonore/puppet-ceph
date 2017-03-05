@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe 'ceph::pool' do
+describe 'cephir::pool' do
 
   shared_examples_for 'ceph pool' do
     describe "create with custom params" do

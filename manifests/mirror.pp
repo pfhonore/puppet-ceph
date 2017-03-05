@@ -17,7 +17,7 @@
 #
 # Configures a ceph rbd mirroring
 #
-# == Define: ceph::mirror
+# == Define: cephir::mirror
 #
 # === Parameters:
 #
@@ -30,7 +30,7 @@
 # [*rbd_mirror_enable*] Enable the RBD mirror service on boot
 #   Optional. Default is true
 
-define ceph::mirror (
+define cephir::mirror (
   $pkg_mirror        = 'rbd-mirror',
   $rbd_mirror_ensure = 'running',
   $rbd_mirror_enable = true,

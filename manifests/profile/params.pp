@@ -16,7 +16,7 @@
 #  Author: David Gurtner <aldavud@crimson.ch>
 #  Author: David Moreau Simard <dmsimard@iweb.com>
 #
-# == Class: ceph::profile::params
+# == Class: cephir::profile::params
 #
 # Extract the data from hiera where available
 #
@@ -35,7 +35,7 @@
 #   Optional. String like e.g. 'a, b, c'.
 #
 # [*mon_host*] The fqdn of MONs in the cluster. They can also be declared
-#   individually through ceph::mon.
+#   individually through cephir::mon.
 #   Optional. String like e.g. 'a, b, c'.
 #
 # [*ms_bind_ipv6*] Enables Ceph daemons to bind to IPv6 addresses.
@@ -100,9 +100,9 @@
 # [*mon_keyring*] The location of the keyring retrieved by default
 #   Optional. Either mon_key or mon_keyring need to be set when using cephx
 #
-# [*client_keys*] A hash of client keys that will be passed to ceph::keys.
+# [*client_keys*] A hash of client keys that will be passed to cephir::keys.
 #   Optional but required when using cephx.
-#   See ceph::key for hash parameters andstructure.
+#   See cephir::key for hash parameters andstructure.
 #
 # [*osds*] A Ceph osd hash
 #   Optional.
@@ -189,7 +189,7 @@
 #   Optional. String. Defaults to undef.
 # 
 
-class ceph::profile::params (
+class cephir::profile::params (
   $fsid = undef,
   $release = undef,
   $authentication_type = undef,

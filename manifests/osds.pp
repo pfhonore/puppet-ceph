@@ -15,7 +15,7 @@
 #
 # Author: David Gurtner <aldavud@crimson.ch>
 #
-# == Class: ceph::osds
+# == Class: cephir::osds
 #
 # Class wrapper for the benefit of scenario_node_terminus
 #
@@ -33,13 +33,13 @@
 #   recovery. The recommended value is the absolute max for pid_max: 4194303
 #   http://docs.ceph.com/docs/jewel/rados/troubleshooting/troubleshooting-osd/
 #
-class ceph::osds(
+class cephir::osds(
   $args = {},
   $defaults = {},
-  $pid_max = $::ceph::profile::params::pid_max,
+  $pid_max = $::cephir::profile::params::pid_max,
 )
 {
-  create_resources(ceph::osd, $args, $defaults)
+  create_resources(cephir::osd, $args, $defaults)
 
   if $pid_max {
     $sysctl_settings = {

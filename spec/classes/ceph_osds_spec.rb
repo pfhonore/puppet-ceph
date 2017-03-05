@@ -17,7 +17,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::osds' do
+describe 'cephir::osds' do
 
   shared_examples_for 'ceph osds' do
     let :params do

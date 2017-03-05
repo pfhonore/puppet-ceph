@@ -17,7 +17,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::profile::mon' do
+describe 'cephir::profile::mon' do
 
   shared_examples_for 'ceph profile mon' do
 
@@ -26,7 +26,7 @@ describe 'ceph::profile::mon' do
       :key                 => 'AQATGHJTUCBqIBAA7M2yafV1xctn1pgr3GcKPg==',
       :public_addr         => '10.11.12.2')
     }
-    it { is_expected.to contain_class('ceph::keys').with(
+    it { is_expected.to contain_class('cephir::keys').with(
       'args' => {
         'client.admin' => {
           'secret'  => 'AQBMGHJTkC8HKhAAJ7NH255wYypgm1oVuV41MA==',

@@ -17,11 +17,11 @@
 #
 require 'spec_helper'
 
-describe 'ceph::profile::mds' do
+describe 'cephir::profile::mds' do
 
   shared_examples_for 'ceph profile mds' do
 
-    it { is_expected.to contain_class('ceph::mds').with(
+    it { is_expected.to contain_class('cephir::mds').with(
       'public_addr' => '10.11.12.2',
     )}
     it { is_expected.to contain_ceph__key('mds.myhostname').with(

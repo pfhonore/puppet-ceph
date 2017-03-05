@@ -1,4 +1,4 @@
-# == Class: ceph::rgw::keystone::auth
+# == Class: cephir::rgw::keystone::auth
 #
 # Configures RGW user, service and endpoint in Keystone V3.
 #
@@ -6,11 +6,11 @@
 #
 # [*password*]
 #  Password for the RGW user. 
-#  Defaults to ceph::profile::params::rgw_keystone_admin_password
+#  Defaults to cephir::profile::params::rgw_keystone_admin_password
 #
 # [*user*]
 #   Username for the RGW user. Optional.
-#   Defaults to ceph::profile::params::rgw_keystone_admin_use
+#   Defaults to cephir::profile::params::rgw_keystone_admin_use
 #
 # [*email*]
 #   Email for the RGW user. Optional.
@@ -38,23 +38,23 @@
 #
 # [*tenant*]
 #   Tenant for user. Optional.
-#   Defaults to ceph::profile::params::rgw_keystone_admin_project
+#   Defaults to cephir::profile::params::rgw_keystone_admin_project
 #
 # [*rgw_service*]
 #   Name of the keystone service used by RGW
 #   Defaults to 'swift::object-store'
 #
 
-class ceph::rgw::keystone::auth (
-  $password     = $::ceph::profile::params::rgw_keystone_admin_password,
-  $user         = $::ceph::profile::params::rgw_keystone_admin_user,
+class cephir::rgw::keystone::auth (
+  $password     = $::cephir::profile::params::rgw_keystone_admin_password,
+  $user         = $::cephir::profile::params::rgw_keystone_admin_user,
   $email        = 'rgwuser@localhost',
   $roles        = ['admin', 'Member'],
   $public_url   = 'http://127.0.0.1:8080/swift/v1',
   $admin_url    = 'http://127.0.0.1:8080/swift/v1',
   $internal_url = 'http://127.0.0.1:8080/swift/v1',
   $region       = 'RegionOne',
-  $tenant       = $::ceph::profile::params::rgw_keystone_admin_project,
+  $tenant       = $::cephir::profile::params::rgw_keystone_admin_project,
   $rgw_service  = 'swift::object-store',
 ) {
 

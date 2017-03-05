@@ -18,7 +18,7 @@
 #
 # Configures a ceph radosgw.
 #
-# == Define: ceph::rgw
+# == Define: cephir::rgw
 #
 # The RGW id. An alphanumeric string uniquely identifying the RGW.
 # ( example: radosgw.gateway )
@@ -26,7 +26,7 @@
 # === Parameters:
 #
 # [*pkg_radosgw*] Package name for the ceph radosgw.
-#   Optional. Default is osfamily dependent (check ceph::params).
+#   Optional. Default is osfamily dependent (check cephir::params).
 #
 # [*rgw_ensure*] Whether to start radosgw service.
 #   Optional. Default is running.
@@ -70,16 +70,16 @@
 #   Optional. Default is true.
 #
 
-define ceph::rgw (
-  $pkg_radosgw        = $::ceph::params::pkg_radosgw,
+define cephir::rgw (
+  $pkg_radosgw        = $::cephir::params::pkg_radosgw,
   $rgw_ensure         = 'running',
   $rgw_enable         = true,
   $rgw_data           = "/var/lib/ceph/radosgw/ceph-${name}",
-  $user               = $::ceph::params::user_radosgw,
+  $user               = $::cephir::params::user_radosgw,
   $keyring_path       = "/etc/ceph/cephir.client.${name}.keyring",
   $log_file           = '/var/log/ceph/radosgw.log',
   $rgw_dns_name       = $::fqdn,
-  $rgw_socket_path    = $::ceph::params::rgw_socket_path,
+  $rgw_socket_path    = $::cephir::params::rgw_socket_path,
   $rgw_print_continue = false,
   $rgw_port           = undef,
   $frontend_type      = 'apache-fastcgi',
@@ -109,7 +109,7 @@ define ceph::rgw (
   {
     if( $rgw_frontends =~ /civetweb/ )
     {
-      ceph::rgw::civetweb { $name:
+      cephir::rgw::civetweb { $name:
         rgw_frontends => $rgw_frontends,
       }
     }
@@ -182,7 +182,7 @@ define ceph::rgw (
       start    => "start radosgw id=${name}",
       stop     => "stop radosgw id=${name}",
       status   => "status radosgw id=${name}",
-      provider => $::ceph::params::service_provider,
+      provider => $::cephir::params::service_provider,
     }
   # Everything else that is supported by puppet-ceph should run systemd.
   } else {

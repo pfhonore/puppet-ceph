@@ -1,5 +1,5 @@
 ---
-ceph::profile::params::client_keys:
+cephir::profile::params::client_keys:
   'client.volumes':
     secret: 'AQA4MPZTOGU0ARAAXH9a0fXxVq0X25n2yPREDw=='
     mode: '0644'

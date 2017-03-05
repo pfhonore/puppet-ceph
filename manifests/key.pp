@@ -19,7 +19,7 @@
 # keys into or delete keys from the cluster/keyring via ceph and ceph-authtool
 # tools.
 #
-# == Define: ceph::key
+# == Define: cephir::key
 #
 # The full ceph ID name, e.g. 'client.admin' or 'mon.'.
 #
@@ -70,7 +70,7 @@
 #   set to a value other than undef, it overrides the ceph default
 #   inferred from the client name. Default to undef.
 #
-define ceph::key (
+define cephir::key (
   $secret,
   $cluster = undef,
   $keyring_path = "/etc/ceph/ceph.${name}.keyring",
@@ -119,7 +119,7 @@ define ceph::key (
       group                   => $group,
       mode                    => $mode,
       selinux_ignore_defaults => true,
-      require                 => Package[$::ceph::params::packages],
+      require                 => Package[$::cephir::params::packages],
     }
   }
 

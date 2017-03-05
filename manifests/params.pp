@@ -16,7 +16,7 @@
 # Author: David Moreau Simard <dmsimard@iweb.com>
 # Author: David Gurtner <aldavud@crimson.ch>
 #
-# == Class: ceph::params
+# == Class: cephir::params
 #
 # these parameters need to be accessed from several locations and
 # should be considered to be constant
@@ -40,7 +40,7 @@
 #   Optional. Default to 'jewel'.
 #
 
-class ceph::params (
+class cephir::params (
   $exec_timeout    = 600,
   $packages        = ['ceph'], # just provide the minimum per default
   $rgw_socket_path = '/tmp/radosgw.sock',

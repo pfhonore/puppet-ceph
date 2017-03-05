@@ -17,7 +17,7 @@
 #
 # Configures a ceph radosgw apache frontend with mod_proxy.
 #
-## == Define: ceph::rgw::apache_proxy_fcgi
+## == Define: cephir::rgw::apache_proxy_fcgi
 #
 # The RGW id. An alphanumeric string uniquely identifying the RGW.
 # ( example: radosgw.gateway )
@@ -64,7 +64,7 @@
 # [*custom_apache_ports*] Array of ports to listen by Apache.
 #   Optional. Works only if custom_apache set to true. Default is undef.
 #
-define ceph::rgw::apache_proxy_fcgi (
+define cephir::rgw::apache_proxy_fcgi (
   $admin_email          = 'root@localhost',
   $docroot              = '/var/www',
   $rgw_dns_name         = $::fqdn,

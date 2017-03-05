@@ -1,6 +1,6 @@
 ---
 features:
-  - Updates 'ceph::rgw::keystone' to integrate with keystone V3.
+  - Updates 'cephir::rgw::keystone' to integrate with keystone V3.
     Adds new parameters rgw_keystone_admin_domain,
     rgw_keyston_admin_project, rgw_keystone_admin_user
     and rgw_keystone_admin_password.

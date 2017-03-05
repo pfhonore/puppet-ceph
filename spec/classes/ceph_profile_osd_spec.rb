@@ -17,7 +17,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::profile::osd' do
+describe 'cephir::profile::osd' do
 
   shared_examples_for 'ceph profile osd' do
     context 'with the default osd defined in common.yaml' do
@@ -26,7 +26,7 @@ describe 'ceph::profile::osd' do
         facts.merge!( :hostname => 'osd')
       end
 
-      it { is_expected.to contain_class('ceph::profile::client') }
+      it { is_expected.to contain_class('cephir::profile::client') }
       it { is_expected.to contain_ceph__osd('/dev/sdc').with(:journal => '/dev/sdb') }
       it { is_expected.to contain_ceph__osd('/dev/sdd').with(:journal => '/dev/sdb') }
     end
@@ -37,7 +37,7 @@ describe 'ceph::profile::osd' do
         facts.merge!( :hostname => 'first')
       end
 
-      it { is_expected.to contain_class('ceph::profile::client') }
+      it { is_expected.to contain_class('cephir::profile::client') }
       it { is_expected.to contain_ceph__osd('/dev/sdb').with( :journal => '/srv/journal') }
     end
   end

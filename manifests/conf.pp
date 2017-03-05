@@ -15,7 +15,7 @@
 #
 # Author: Loic Dachary <loic@dachary.org>
 #
-# == Class: ceph::conf
+# == Class: cephir::conf
 #
 # Class wrapper for the benefit of scenario_node_terminus
 #
@@ -27,6 +27,6 @@
 # [*defaults*] A config hash
 #   Optional. Defaults to a empty hash
 #
-class ceph::conf($args = {}, $defaults = {}) {
+class cephir::conf($args = {}, $defaults = {}) {
   ensure_resources(ceph_config, $args, $defaults)
 }

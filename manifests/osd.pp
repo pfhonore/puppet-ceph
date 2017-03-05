@@ -17,7 +17,7 @@
 # Author: Loic Dachary <loic@dachary.org>
 # Author: David Gurtner <aldavud@crimson.ch>
 #
-# == Define: ceph::osd
+# == Define: cephir::osd
 #
 # Install and configure a ceph OSD
 #
@@ -39,26 +39,26 @@
 #   Optional. Same default as ceph.
 #
 # [*exec_timeout*] The default exec resource timeout, in seconds
-#   Optional. Defaults to $::ceph::params::exec_timeout
+#   Optional. Defaults to $::cephir::params::exec_timeout
 #
 # [*selinux_file_context*] The SELinux file context to apply
 #   on the directory backing the OSD service.
 #   Optional. Defaults to 'ceph_var_lib_t'
 #
 # [*fsid*] The ceph cluster FSID
-#   Optional. Defaults to $::ceph::profile::params::fsid
+#   Optional. Defaults to $::cephir::profile::params::fsid
 #
-define ceph::osd (
+define cephir::osd (
   $ensure = present,
-  $objectstore = $::ceph::params::osd_objectstore,
+  $objectstore = $::cephir::params::osd_objectstore,
   $journal = undef,
   $cluster = undef,
-  $exec_timeout = $::ceph::params::exec_timeout,
+  $exec_timeout = $::cephir::params::exec_timeout,
   $selinux_file_context = 'ceph_var_lib_t',
-  $fsid = $::ceph::profile::params::fsid,
+  $fsid = $::cephir::profile::params::fsid,
   ) {
 
-    include ::ceph::params
+    include ::cephir::params
 
     $data = $name
 
@@ -187,11 +187,11 @@ ceph-disk list | grep -E ' *${data}1? .*ceph data, (prepared|active)' ||
         tag       => 'prepare',
       }
       if (str2bool($::selinux) == true) {
-        ensure_packages($::ceph::params::pkg_policycoreutils, {'ensure' => 'present'})
+        ensure_packages($::cephir::params::pkg_policycoreutils, {'ensure' => 'present'})
         exec { "fcontext_${name}":
           command => "semanage fcontext -a -t ${selinux_file_context} '${data}(/.*)?' && restorecon -R ${data}",
           path    => ['/usr/sbin', '/sbin', '/usr/bin', '/bin'],
-          require => [Package[$::ceph::params::pkg_policycoreutils],Exec[$ceph_prepare]],
+          require => [Package[$::cephir::params::pkg_policycoreutils],Exec[$ceph_prepare]],
           before  => Exec[$ceph_activate],
           unless  => "test -b ${data} || (semanage fcontext -l | grep ${data})",
         }

@@ -15,15 +15,15 @@
 #
 # Author: Jan Provaznik <jprovazn@redhat.com>
 #
-# == Class: ceph::profile::fs
+# == Class: cephir::profile::fs
 #
 # Profile for a Ceph fs
 #
-class ceph::profile::fs {
-  require ::ceph::profile::base
+class cephir::profile::fs {
+  require ::cephir::profile::base
 
-  ceph::fs { $ceph::profile::params::fs_name:
-    metadata_pool => $ceph::profile::params::fs_metadata_pool,
-    data_pool     => $ceph::profile::params::fs_data_pool,
+  cephir::fs { $ceph::profile::params::fs_name:
+    metadata_pool => $cephir::profile::params::fs_metadata_pool,
+    data_pool     => $cephir::profile::params::fs_data_pool,
   }
 }

@@ -15,42 +15,42 @@
 #
 # Author: David Gurtner <aldavud@crimson.ch>
 #
-# == Class: ceph::profile::base
+# == Class: cephir::profile::base
 #
 # Base profile to install ceph and configure /etc/ceph/cephir.conf
 #
-class ceph::profile::base {
-  include ::ceph::profile::params
+class cephir::profile::base {
+  include ::cephir::profile::params
 
-  if ( $ceph::profile::params::manage_repo ) {
-    Class['ceph::repo'] -> Class['ceph']
+  if ( $cephir::profile::params::manage_repo ) {
+    Class['cephir::repo'] -> Class['ceph']
 
-    class { '::ceph::repo':
-      release => $ceph::profile::params::release,
+    class { '::cephir::repo':
+      release => $cephir::profile::params::release,
     }
   }
 
   class { '::ceph':
-    fsid                          => $ceph::profile::params::fsid,
-    authentication_type           => $ceph::profile::params::authentication_type,
-    osd_journal_size              => $ceph::profile::params::osd_journal_size,
-    osd_max_object_name_len       => $ceph::profile::params::osd_max_object_name_len,
-    osd_max_object_namespace_len  => $ceph::profile::params::osd_max_object_namespace_len,
-    osd_pool_default_pg_num       => $ceph::profile::params::osd_pool_default_pg_num,
-    osd_pool_default_pgp_num      => $ceph::profile::params::osd_pool_default_pgp_num,
-    osd_pool_default_size         => $ceph::profile::params::osd_pool_default_size,
-    osd_pool_default_min_size     => $ceph::profile::params::osd_pool_default_min_size,
-    mon_initial_members           => $ceph::profile::params::mon_initial_members,
-    mon_host                      => $ceph::profile::params::mon_host,
-    ms_bind_ipv6                  => $ceph::profile::params::ms_bind_ipv6,
-    cluster_network               => $ceph::profile::params::cluster_network,
-    public_network                => $ceph::profile::params::public_network,
-    osd_max_backfills             => $ceph::profile::params::osd_max_backfills,
-    osd_recovery_max_active       => $ceph::profile::params::osd_recovery_max_active,
-    osd_recovery_op_priority      => $ceph::profile::params::osd_recovery_op_priority,
-    osd_recovery_max_single_start => $ceph::profile::params::osd_recovery_max_single_start,
-    osd_max_scrubs                => $ceph::profile::params::osd_max_scrubs,
-    osd_op_threads                => $ceph::profile::params::osd_op_threads,
-    rbd_default_features          => $ceph::profile::params::rbd_default_features,
+    fsid                          => $cephir::profile::params::fsid,
+    authentication_type           => $cephir::profile::params::authentication_type,
+    osd_journal_size              => $cephir::profile::params::osd_journal_size,
+    osd_max_object_name_len       => $cephir::profile::params::osd_max_object_name_len,
+    osd_max_object_namespace_len  => $cephir::profile::params::osd_max_object_namespace_len,
+    osd_pool_default_pg_num       => $cephir::profile::params::osd_pool_default_pg_num,
+    osd_pool_default_pgp_num      => $cephir::profile::params::osd_pool_default_pgp_num,
+    osd_pool_default_size         => $cephir::profile::params::osd_pool_default_size,
+    osd_pool_default_min_size     => $cephir::profile::params::osd_pool_default_min_size,
+    mon_initial_members           => $cephir::profile::params::mon_initial_members,
+    mon_host                      => $cephir::profile::params::mon_host,
+    ms_bind_ipv6                  => $cephir::profile::params::ms_bind_ipv6,
+    cluster_network               => $cephir::profile::params::cluster_network,
+    public_network                => $cephir::profile::params::public_network,
+    osd_max_backfills             => $cephir::profile::params::osd_max_backfills,
+    osd_recovery_max_active       => $cephir::profile::params::osd_recovery_max_active,
+    osd_recovery_op_priority      => $cephir::profile::params::osd_recovery_op_priority,
+    osd_recovery_max_single_start => $cephir::profile::params::osd_recovery_max_single_start,
+    osd_max_scrubs                => $cephir::profile::params::osd_max_scrubs,
+    osd_op_threads                => $cephir::profile::params::osd_op_threads,
+    rbd_default_features          => $cephir::profile::params::rbd_default_features,
   }
 }

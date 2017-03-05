@@ -18,11 +18,11 @@
 #
 require 'spec_helper'
 
-describe 'ceph::rgw::apache_fastcgi' do
+describe 'cephir::rgw::apache_fastcgi' do
 
   let :pre_condition do
-    "include ceph::params
-     class { 'ceph::repo':
+    "include cephir::params
+     class { 'cephir::repo':
        fastcgi => true,
      }"
   end

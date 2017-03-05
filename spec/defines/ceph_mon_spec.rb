@@ -20,7 +20,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::mon' do
+describe 'cephir::mon' do
 
   context 'Ubuntu 14.04' do
 

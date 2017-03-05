@@ -16,7 +16,7 @@
 
 require 'spec_helper'
 
-describe 'ceph::mds' do
+describe 'cephir::mds' do
 
   shared_examples_for 'ceph mds' do
     describe "activated with default params" do

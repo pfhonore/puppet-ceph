@@ -1,6 +1,6 @@
 ---
 ######## OSD
-ceph::profile::params::osds:
+cephir::profile::params::osds:
   '/dev/sdb':
     journal: '/srv/journal'
 

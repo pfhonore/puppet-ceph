@@ -13,7 +13,7 @@ features:
 other:
   - |
     The package installed by default for the MDS service can be configured
-    via ceph::params::pkg_mds
+    via cephir::params::pkg_mds
   - |
     The keyring for the MDS service is only created if a key is given, the
-    key to use can be configured via ceph::profile::params::mds_key
+    key to use can be configured via cephir::profile::params::mds_key

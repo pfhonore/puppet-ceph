@@ -19,7 +19,7 @@
 
 require 'spec_helper'
 
-describe 'ceph::repo' do
+describe 'cephir::repo' do
 
   describe 'Debian' do
 

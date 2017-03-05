@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe 'ceph::key' do
+describe 'cephir::key' do
 
   shared_examples_for 'ceph key' do
 

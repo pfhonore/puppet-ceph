@@ -16,19 +16,19 @@
 # Author: David Gurtner <aldavud@crimson.ch>
 # Author: David Moreau Simard <dmsimard@iweb.com>
 #
-# == Class: ceph::profile::client
+# == Class: cephir::profile::client
 #
 # Profile for a Ceph client
 #
-class ceph::profile::client {
-  require ::ceph::profile::base
+class cephir::profile::client {
+  require ::cephir::profile::base
 
   # If the same server is hosting a mon, osd and client, the key resource is
   # ultimately handled by the mon class.
-  if ! defined(Class['ceph::keys']) {
-    if !empty($ceph::profile::params::client_keys) {
-      class { '::ceph::keys':
-        args => $ceph::profile::params::client_keys
+  if ! defined(Class['cephir::keys']) {
+    if !empty($cephir::profile::params::client_keys) {
+      class { '::cephir::keys':
+        args => $cephir::profile::params::client_keys
       }
     }
   }

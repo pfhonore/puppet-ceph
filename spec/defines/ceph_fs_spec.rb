@@ -15,7 +15,7 @@
 
 require 'spec_helper'
 
-describe 'ceph::fs' do
+describe 'cephir::fs' do
 
   shared_examples_for 'ceph fs' do
     describe "activated with custom params" do

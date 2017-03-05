@@ -15,7 +15,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::profile::fs' do
+describe 'cephir::profile::fs' do
 
   shared_examples_for 'ceph profile fs' do
 

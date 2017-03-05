@@ -19,7 +19,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::rgw::apache_proxy_fcgi' do
+describe 'cephir::rgw::apache_proxy_fcgi' do
 
   describe 'Debian Family' do
 

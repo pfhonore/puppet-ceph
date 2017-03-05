@@ -17,7 +17,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::conf' do
+describe 'cephir::conf' do
 
   let :params do
     {

@@ -16,14 +16,14 @@
 # Author: David Gurtner <aldavud@crimson.ch>
 # Author: David Moreau Simard <dmsimard@iweb.com>
 #
-# Class: ceph::profle::osd
+# Class: cephir::profle::osd
 #
 # Profile for a Ceph osd
 #
-class ceph::profile::osd {
-  require ::ceph::profile::client
+class cephir::profile::osd {
+  require ::cephir::profile::client
 
-  class { '::ceph::osds':
-    args => $ceph::profile::params::osds,
+  class { '::cephir::osds':
+    args => $cephir::profile::params::osds,
   }
 }

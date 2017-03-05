@@ -15,7 +15,7 @@
 #
 # Author: David Gurtner <aldavud@crimson.ch>
 #
-# == Class: ceph::keys
+# == Class: cephir::keys
 #
 # Class wrapper for the benefit of scenario_node_terminus
 #
@@ -27,6 +27,6 @@
 # [*defaults*] A keys config hash
 #   Optional. Defaults to a empty hash.
 #
-class ceph::keys($args = {}, $defaults = {}) {
-  create_resources(ceph::key, $args, $defaults)
+class cephir::keys($args = {}, $defaults = {}) {
+  create_resources(cephir::key, $args, $defaults)
 }

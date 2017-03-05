@@ -14,7 +14,7 @@
 #
 # Author: David Moreau Simard <dmsimard@iweb.com>
 #
-# == Class: ceph::mds
+# == Class: cephir::mds
 #
 # Installs and configures MDSs (ceph metadata servers)
 #
@@ -24,7 +24,7 @@
 #   Optional. The IPv(4|6) address on which MDS binds itself.
 #
 # [*pkg_mds*] Package name for the MDS service.
-#   Optional. Defaults to the value of ceph::params::pkg_mds
+#   Optional. Defaults to the value of cephir::params::pkg_mds
 #
 # [*pkg_mds_ensure*] Ensure status for the pkg_mds package resources
 #   Optional. Defaults to present.
@@ -50,9 +50,9 @@
 # [*cluster*] The ceph cluster
 #   Optional. Default to 'ceph'.
 #
-class ceph::mds (
+class cephir::mds (
   $public_addr    = undef,
-  $pkg_mds        = $::ceph::params::pkg_mds,
+  $pkg_mds        = $::cephir::params::pkg_mds,
   $pkg_mds_ensure = present,
   $mds_activate   = true,
   $mds_data       = undef,
@@ -61,7 +61,7 @@ class ceph::mds (
   $mds_id         = $::hostname,
   $keyring        = undef,
   $cluster        = 'ceph',
-) inherits ceph::params {
+) inherits cephir::params {
   if $mds_data {
     $mds_data_real = $mds_data
   } else {

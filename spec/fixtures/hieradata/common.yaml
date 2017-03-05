@@ -1,36 +1,36 @@
 ---
 ######## Ceph
-ceph::profile::params::release: 'jewel'
+cephir::profile::params::release: 'jewel'
 
 ######## Ceph.conf
-ceph::profile::params::fsid: '4b5c8c0a-ff60-454b-a1b4-9747aa737d19'
-ceph::profile::params::authentication_type: 'cephx'
-ceph::profile::params::mon_initial_members: 'first, second'
-ceph::profile::params::mon_host: '10.11.12.2:6789, 10.11.12.3:6789'
-ceph::profile::params::osd_journal_size: '4096'
-ceph::profile::params::osd_max_object_name_len: '256'
-ceph::profile::params::osd_max_object_namespace_len: '64'
-ceph::profile::params::osd_pool_default_pg_num: '200'
-ceph::profile::params::osd_pool_default_pgp_num: '200'
-ceph::profile::params::osd_pool_default_size: '2'
-ceph::profile::params::osd_pool_default_min_size: '1'
-ceph::profile::params::cluster_network: '10.12.13.0/24'
-ceph::profile::params::public_network: '10.11.12.0/24'
-ceph::profile::params::public_addr: '10.11.12.2'
-ceph::profile::params::osd_max_backfills: '1'
-ceph::profile::params::osd_recovery_max_active: '1'
-ceph::profile::params::osd_recovery_op_priority: '1'
-ceph::profile::params::osd_recovery_max_single_start: '1'
-ceph::profile::params::osd_max_scrubs: '1'
-ceph::profile::params::osd_op_threads: '2'
-ceph::profile::params::fs_name: 'fs_name'
-ceph::profile::params::fs_metadata_pool: 'metadata_pool'
-ceph::profile::params::fs_data_pool: 'data_pool'
+cephir::profile::params::fsid: '4b5c8c0a-ff60-454b-a1b4-9747aa737d19'
+cephir::profile::params::authentication_type: 'cephx'
+cephir::profile::params::mon_initial_members: 'first, second'
+cephir::profile::params::mon_host: '10.11.12.2:6789, 10.11.12.3:6789'
+cephir::profile::params::osd_journal_size: '4096'
+cephir::profile::params::osd_max_object_name_len: '256'
+cephir::profile::params::osd_max_object_namespace_len: '64'
+cephir::profile::params::osd_pool_default_pg_num: '200'
+cephir::profile::params::osd_pool_default_pgp_num: '200'
+cephir::profile::params::osd_pool_default_size: '2'
+cephir::profile::params::osd_pool_default_min_size: '1'
+cephir::profile::params::cluster_network: '10.12.13.0/24'
+cephir::profile::params::public_network: '10.11.12.0/24'
+cephir::profile::params::public_addr: '10.11.12.2'
+cephir::profile::params::osd_max_backfills: '1'
+cephir::profile::params::osd_recovery_max_active: '1'
+cephir::profile::params::osd_recovery_op_priority: '1'
+cephir::profile::params::osd_recovery_max_single_start: '1'
+cephir::profile::params::osd_max_scrubs: '1'
+cephir::profile::params::osd_op_threads: '2'
+cephir::profile::params::fs_name: 'fs_name'
+cephir::profile::params::fs_metadata_pool: 'metadata_pool'
+cephir::profile::params::fs_data_pool: 'data_pool'
 
 ######## Keys
-ceph::profile::params::mds_key: 'AQDLOh1VgEp6FRAAFzT7Zw+Y9V6JJExQAsRnRQ=='
-ceph::profile::params::mon_key: 'AQATGHJTUCBqIBAA7M2yafV1xctn1pgr3GcKPg=='
-ceph::profile::params::client_keys:
+cephir::profile::params::mds_key: 'AQDLOh1VgEp6FRAAFzT7Zw+Y9V6JJExQAsRnRQ=='
+cephir::profile::params::mon_key: 'AQATGHJTUCBqIBAA7M2yafV1xctn1pgr3GcKPg=='
+cephir::profile::params::client_keys:
   'client.admin':
     secret: 'AQBMGHJTkC8HKhAAJ7NH255wYypgm1oVuV41MA=='
     mode: '0600'
@@ -52,7 +52,7 @@ ceph::profile::params::client_keys:
     group: 'root'
     cap_mon: 'allow r'
     cap_osd: 'allow class-read object_prefix rbd_children, allow rwx pool=volumes'
-ceph::profile::params::osds:
+cephir::profile::params::osds:
   '/dev/sdc':
     journal: '/dev/sdb'
   '/dev/sdd':

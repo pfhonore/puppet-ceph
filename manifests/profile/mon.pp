@@ -16,18 +16,18 @@
 # Author: David Gurtner <aldavud@crimson.ch>
 # Author: David Moreau Simard <dmsimard@iweb.com>
 #
-# == Class: ceph::profile::mon
+# == Class: cephir::profile::mon
 #
 # Profile for a Ceph mon
 #
-class ceph::profile::mon {
-  require ::ceph::profile::base
+class cephir::profile::mon {
+  require ::cephir::profile::base
 
-  ceph::mon { $::hostname:
-    authentication_type => $ceph::profile::params::authentication_type,
-    key                 => $ceph::profile::params::mon_key,
-    keyring             => $ceph::profile::params::mon_keyring,
-    public_addr         => $ceph::profile::params::public_addr,
+  cephir::mon { $::hostname:
+    authentication_type => $cephir::profile::params::authentication_type,
+    key                 => $cephir::profile::params::mon_key,
+    keyring             => $cephir::profile::params::mon_keyring,
+    public_addr         => $cephir::profile::params::public_addr,
   }
 
   $defaults = {
@@ -36,9 +36,9 @@ class ceph::profile::mon {
     inject_keyring => "/var/lib/ceph/mon/ceph-${::hostname}/keyring",
   }
 
-  if !empty($ceph::profile::params::client_keys) {
-    class { '::ceph::keys':
-      args     => $ceph::profile::params::client_keys,
+  if !empty($cephir::profile::params::client_keys) {
+    class { '::cephir::keys':
+      args     => $cephir::profile::params::client_keys,
       defaults => $defaults
     }
   }

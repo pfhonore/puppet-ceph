@@ -24,7 +24,7 @@
 # Author: Ricardo Rocha <ricardo@catalyst.net.nz>
 # Author: Emilien Macchi <emilien@redhat.com>
 #
-# == Class: ceph::repo
+# == Class: cephir::repo
 #
 # Configure ceph APT repo for Ceph
 #
@@ -34,7 +34,7 @@
 #  Optional. Defaults to 'present'.
 #
 # [*release*] The name of the Ceph release to install
-#   Optional. Default to 'jewel' in ceph::params.
+#   Optional. Default to 'jewel' in cephir::params.
 #
 # [*fastcgi*] Install Ceph fastcgi apache module for Ceph
 #   Optional. Defaults to 'false'
@@ -54,22 +54,22 @@
 # [*enable_sig*] Whether or not enable SIG repository.
 #   CentOS SIG repository contains Ceph packages built by CentOS community.
 #   https://wiki.centos.org/SpecialInterestGroup/Storage/
-#   Optional. Defaults to False in ceph::params.
+#   Optional. Defaults to False in cephir::params.
 #
 # [*ceph_mirror*] Ceph mirror used to download packages.
 #   Optional. Defaults to undef.
 #
-class ceph::repo (
+class cephir::repo (
   $ensure         = present,
-  $release        = $::ceph::params::release,
+  $release        = $::cephir::params::release,
   $fastcgi        = false,
   $proxy          = undef,
   $proxy_username = undef,
   $proxy_password = undef,
   $enable_epel    = true,
-  $enable_sig     = $::ceph::params::enable_sig,
+  $enable_sig     = $::cephir::params::enable_sig,
   $ceph_mirror    = undef,
-) inherits ceph::params {
+) inherits cephir::params {
   case $::osfamily {
     'Debian': {
       include ::apt

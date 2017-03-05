@@ -17,10 +17,10 @@
 #
 require 'spec_helper'
 
-describe 'ceph::rgw' do
+describe 'cephir::rgw' do
 
   let :pre_condition do
-    'include ceph::params'
+    'include cephir::params'
   end
 
   describe 'Ubuntu 14.04' do

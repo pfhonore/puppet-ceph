@@ -4,7 +4,7 @@ Use Cases
 I want to try this module, heard of ceph, want to see it in action
 ------------------------------------------------------------------
 
-I want to run it on a virtual machine, all in one. The **ceph::repo** class will enable the official ceph repository with the most current branch selected. The **ceph** class will create a configuration file with no authentication enabled. The **ceph::mon** resource configures and runs a monitor to which a **ceph::osd** daemon will connect to provide disk storage backed by the /srv/data folder (note that storing OSD data on an existing filesystem is only recommended for simple tests like this one).
+I want to run it on a virtual machine, all in one. The **cephir::repo** class will enable the official ceph repository with the most current branch selected. The **ceph** class will create a configuration file with no authentication enabled. The **ceph::mon** resource configures and runs a monitor to which a **ceph::osd** daemon will connect to provide disk storage backed by the /srv/data folder (note that storing OSD data on an existing filesystem is only recommended for simple tests like this one).
 
 * install puppet and this module and its dependences (see metadata.json)
 * paste the snippet above into /tmp/ceph.puppet
@@ -12,7 +12,7 @@ I want to run it on a virtual machine, all in one. The **ceph::repo** class will
 * `ceph -s`: it will connect to the monitor and report that the cluster is ready to be used
 
 ```
-    class { 'ceph::repo': }
+    class { 'cephir::repo': }
     class { 'ceph':
       fsid                       => generate('/usr/bin/uuidgen'),
       mon_host                   => $::ipaddress,
@@ -23,11 +23,11 @@ I want to run it on a virtual machine, all in one. The **ceph::repo** class will
     ceph_config {
      'global/osd_journal_size': value => '100';
     }
-    ceph::mon { 'a':
+    cephir::mon { 'a':
       public_addr         => $::ipaddress,
       authentication_type => 'none',
     }
-    ceph::osd { '/srv/data': }
+    cephir::osd { '/srv/data': }
 ```
 
 I want to operate a production cluster
@@ -54,13 +54,13 @@ Enjoy your ceph cluster!
     $fsid = '066F558C-6789-4A93-AAF1-5AF1BA01A3AD'
 
     node /mon[123]/ {
-      class { 'ceph::repo': }
+      class { 'cephir::repo': }
       class { 'ceph':
         fsid                => $fsid,
         mon_initial_members => 'mon1,mon2,mon3',
         mon_host            => '<ip of mon1>,<ip of mon2>,<ip of mon3>',
       }
-      ceph::mon { $::hostname:
+      cephir::mon { $::hostname:
         key => $mon_key,
       }
       Ceph::Key {
@@ -68,45 +68,45 @@ Enjoy your ceph cluster!
         inject_as_id   => 'mon.',
         inject_keyring => "/var/lib/ceph/mon/ceph-${::hostname}/keyring",
       }
-      ceph::key { 'client.admin':
+      cephir::key { 'client.admin':
         secret  => $admin_key,
         cap_mon => 'allow *',
         cap_osd => 'allow *',
         cap_mds => 'allow',
       }
-      ceph::key { 'client.bootstrap-osd':
+      cephir::key { 'client.bootstrap-osd':
         secret  => $bootstrap_osd_key,
         cap_mon => 'allow profile bootstrap-osd',
       }
     }
 
     node /osd*/ {
-      class { 'ceph::repo': }
+      class { 'cephir::repo': }
       class { 'ceph':
         fsid                => $fsid,
         mon_initial_members => 'mon1,mon2,mon3',
         mon_host            => '<ip of mon1>,<ip of mon2>,<ip of mon3>',
       }
-      ceph::osd {
+      cephir::osd {
       '<disk1>':
         journal => '<journal for disk1>';
       '<disk2>':
         journal => '<journal for disk2>';
       }
-      ceph::key {'client.bootstrap-osd':
+      cephir::key {'client.bootstrap-osd':
          keyring_path => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
          secret       => $bootstrap_osd_key,
       }
     }
 
     node /client/ {
-      class { 'ceph::repo': }
+      class { 'cephir::repo': }
       class { 'ceph':
         fsid                => $fsid,
         mon_initial_members => 'mon1,mon2,mon3',
         mon_host            => '<ip of mon1>,<ip of mon2>,<ip of mon3>',
       }
-      ceph::key { 'client.admin':
+      cephir::key { 'client.admin':
         secret => $admin_key
       }
     }
@@ -132,17 +132,17 @@ On the client:
     $fsid = '066F558C-6789-4A93-AAF1-5AF1BA01A3AD'
 
     node /node1/ {
-      class { 'ceph::repo': }
+      class { 'cephir::repo': }
       class { 'ceph':
         fsid                => $fsid,
         mon_host            => '<ip of node1>',
         mon_initial_members => 'node1',
         authentication_type => 'none',
       }
-      ceph::mon { $::hostname:
+      cephir::mon { $::hostname:
         authentication_type => 'none',
       }
-      ceph::osd {
+      cephir::osd {
       '<disk1>':
         journal => '<journal for disk1>';
       '<disk2>':
@@ -151,14 +151,14 @@ On the client:
     }
 
     node /node[23]/ {
-      class { 'ceph::repo': }
+      class { 'cephir::repo': }
       class { 'ceph':
         fsid                => $fsid,
         mon_host            => '<ip of node1>',
         mon_initial_members => 'node1',
         authentication_type => 'none',
       }
-      ceph::osd {
+      cephir::osd {
       '<disk1>':
         journal => '<journal for disk1>';
       '<disk2>':
@@ -167,7 +167,7 @@ On the client:
     }
 
     node /client/ {
-      class { 'ceph::repo': }
+      class { 'cephir::repo': }
       class { 'ceph':
         fsid                => $fsid,
         mon_host            => '<ip of node1>',

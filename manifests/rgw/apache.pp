@@ -17,7 +17,7 @@
 #
 # Configures a ceph radosgw apache frontend.
 #
-## == Define: ceph::rgw::apache
+## == Define: cephir::rgw::apache
 #
 # The RGW id. An alphanumeric string uniquely identifying the RGW.
 # ( example: radosgw.gateway )
@@ -45,25 +45,25 @@
 # [*syslog*] Whether or not to log to syslog.
 #   Optional. Default is true.
 #
-# [*ceph_apache_repo*] Whether to require the CEPH apache repo (ceph::repo::fastcgi).
+# [*ceph_apache_repo*] Whether to require the CEPH apache repo (cephir::repo::fastcgi).
 #   Optional. Default is true. Check:
 #   http://ceph.com/docs/master/install/install-ceph-gateway/
 #   for more info on repository recommendations.
 #
-define ceph::rgw::apache (
+define cephir::rgw::apache (
   $admin_email      = 'root@localhost',
   $docroot          = '/var/www',
   $fcgi_file        = '/var/www/s3gw.fcgi',
   $rgw_dns_name     = $::fqdn,
   $rgw_port         = 80,
-  $rgw_socket_path  = $::ceph::params::rgw_socket_path,
+  $rgw_socket_path  = $::cephir::params::rgw_socket_path,
   $syslog           = true,
   $ceph_apache_repo = true,
 ) {
 
   warning ('Class rgw::apache is deprecated in favor of rgw::apache_fastcgi')
 
-  ceph::rgw::apache_fastcgi { $name:
+  cephir::rgw::apache_fastcgi { $name:
     admin_email      => $admin_email,
     docroot          => $docroot,
     fcgi_file        => $fcgi_file,

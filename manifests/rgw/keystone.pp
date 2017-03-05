@@ -72,7 +72,7 @@
 # [*rgw_keystone_admin_password*] The password for OpenStack admin user
 #   Required if rgw_keystone_version is 'v3'.
 
-define ceph::rgw::keystone (
+define cephir::rgw::keystone (
   $rgw_keystone_admin_token         = undef,
   $rgw_keystone_url                 = 'http://127.0.0.1:5000',
   $rgw_keystone_version             = 'v2.0',
@@ -82,11 +82,11 @@ define ceph::rgw::keystone (
   $use_pki                          = true,
   $rgw_keystone_revocation_interval = 600,
   $nss_db_path                      = '/var/lib/ceph/nss',
-  $user                             = $::ceph::params::user_radosgw,
-  $rgw_keystone_admin_domain        = $::ceph::profile::params::rgw_keystone_admin_domain,
-  $rgw_keystone_admin_project       = $::ceph::profile::params::rgw_keystone_admin_project,
-  $rgw_keystone_admin_user          = $::ceph::profile::params::rgw_keystone_admin_user,
-  $rgw_keystone_admin_password      = $::ceph::profile::params::rgw_keystone_admin_password,
+  $user                             = $::cephir::params::user_radosgw,
+  $rgw_keystone_admin_domain        = $::cephir::profile::params::rgw_keystone_admin_domain,
+  $rgw_keystone_admin_project       = $::cephir::profile::params::rgw_keystone_admin_project,
+  $rgw_keystone_admin_user          = $::cephir::profile::params::rgw_keystone_admin_user,
+  $rgw_keystone_admin_password      = $::cephir::profile::params::rgw_keystone_admin_password,
 ) {
 
   unless $name =~ /^radosgw\..+/ {
@@ -131,7 +131,7 @@ define ceph::rgw::keystone (
 
   if $use_pki {
     # fetch the keystone signing cert, add to nss db
-    $pkg_nsstools = $::ceph::params::pkg_nsstools
+    $pkg_nsstools = $::cephir::params::pkg_nsstools
     ensure_packages($pkg_nsstools, {'ensure' => 'present'})
 
     file { $nss_db_path:
@@ -172,7 +172,7 @@ certutil -d ${nss_db_path} -L | grep ^signing_cert
     }
 
     Package[$pkg_nsstools]
-    -> Package[$::ceph::params::packages]
+    -> Package[$::cephir::params::packages]
     -> File[$nss_db_path]
     -> Exec["${name}-nssdb-ca"]
     -> Exec["${name}-nssdb-signing"]

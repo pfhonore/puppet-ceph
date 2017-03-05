@@ -15,16 +15,16 @@
 #
 # Author: Keith Schincke <keith.schincke@gmail.com>
 #
-# == Class: ceph::profile::mirror
+# == Class: cephir::profile::mirror
 #
 # Profile for Ceph rbd mirror
 #
-class ceph::profile::mirror {
-  require ::ceph::profile::client
-  $rbd_name = $::ceph::profile::params::rbd_mirror_client_name ? {
+class cephir::profile::mirror {
+  require ::cephir::profile::client
+  $rbd_name = $::cephir::profile::params::rbd_mirror_client_name ? {
     undef   => 'openstack',
-    default => $::ceph::profile::params::rbd_mirror_client_name,
+    default => $::cephir::profile::params::rbd_mirror_client_name,
   }
-  ceph::mirror { $rbd_name:
+  cephir::mirror { $rbd_name:
   }
 }

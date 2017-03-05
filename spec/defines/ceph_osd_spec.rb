@@ -19,7 +19,7 @@
 
 require 'spec_helper'
 
-describe 'ceph::osd' do
+describe 'cephir::osd' do
 
   shared_examples_for 'ceph osd' do
 

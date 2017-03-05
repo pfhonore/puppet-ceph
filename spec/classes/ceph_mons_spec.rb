@@ -19,7 +19,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::mons' do
+describe 'cephir::mons' do
 
   shared_examples_for 'ceph mons' do
     let :params do

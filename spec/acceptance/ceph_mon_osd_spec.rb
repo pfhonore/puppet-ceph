@@ -24,7 +24,7 @@ describe 'ceph mon osd' do
     it 'should install one monitor and one OSD on /srv/data' do
       pp = <<-EOS
         if $::operatingsystem == 'CentOS' {
-          class { 'ceph::repo':
+          class { 'cephir::repo':
             release     => 'jewel',
             enable_sig  => true,
             enable_epel => false,
@@ -42,11 +42,11 @@ describe 'ceph mon osd' do
           ceph_config {
            'global/osd_journal_size':             value => '100';
           }
-          ceph::mon { 'a':
+          cephir::mon { 'a':
             public_addr         => $::ipaddress,
             authentication_type => 'none',
           }
-          ceph::osd { '/srv/data': }
+          cephir::osd { '/srv/data': }
         }
       EOS
 

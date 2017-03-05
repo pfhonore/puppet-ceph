@@ -20,7 +20,7 @@
 # Manages operations on the pools in the cluster, such as creating or deleting
 # pools, setting PG/PGP numbers, number of replicas, ...
 #
-# == Define: ceph::pool
+# == Define: cephir::pool
 #
 # The name of the pool.
 #
@@ -44,14 +44,14 @@
 #   Increase or decrease the replica level of a pool.
 #
 # [*exec_timeout*] The default exec resource timeout, in seconds
-#   Optional. Defaults to $::ceph::params::exec_timeout
+#   Optional. Defaults to $::cephir::params::exec_timeout
 #
-define ceph::pool (
+define cephir::pool (
   $ensure = present,
   $pg_num = 64,
   $pgp_num = undef,
   $size = undef,
-  $exec_timeout = $::ceph::params::exec_timeout,
+  $exec_timeout = $::cephir::params::exec_timeout,
 ) {
 
   if $ensure == present {

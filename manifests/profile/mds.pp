@@ -15,25 +15,25 @@
 #
 # Author: Giulio Fidente <gfidente@redhat.com>
 #
-# == Class: ceph::profile::mds
+# == Class: cephir::profile::mds
 #
 # Profile for a Ceph mds
 #
-class ceph::profile::mds {
-  require ::ceph::profile::base
+class cephir::profile::mds {
+  require ::cephir::profile::base
 
-  class { '::ceph::mds':
-    public_addr => $ceph::profile::params::public_addr,
+  class { '::cephir::mds':
+    public_addr => $cephir::profile::params::public_addr,
   }
 
-  if !empty($ceph::profile::params::mds_key) {
-    ceph::key { "mds.${::hostname}":
+  if !empty($cephir::profile::params::mds_key) {
+    cephir::key { "mds.${::hostname}":
       cap_mon      => 'allow profile mds',
       cap_osd      => 'allow rwx',
       cap_mds      => 'allow',
       inject       => true,
       keyring_path => "/var/lib/ceph/mds/ceph-${::hostname}/keyring",
-      secret       => $ceph::profile::params::mds_key,
+      secret       => $cephir::profile::params::mds_key,
       user         => 'ceph',
       group        => 'ceph'
     }

@@ -17,7 +17,7 @@
 #
 # Configures a ceph radosgw apache frontend with mod_fastcgi.
 #
-## == Define: ceph::rgw::apache_fastcgi
+## == Define: cephir::rgw::apache_fastcgi
 #
 # The RGW id. An alphanumeric string uniquely identifying the RGW.
 # ( example: radosgw.gateway )
@@ -45,7 +45,7 @@
 # [*syslog*] Whether or not to log to syslog.
 #   Optional. Default is true.
 #
-# [*ceph_apache_repo*] Whether to require the CEPH apache repo (ceph::repo::fastcgi).
+# [*ceph_apache_repo*] Whether to require the CEPH apache repo (cephir::repo::fastcgi).
 #   Optional. Default is true. Check:
 #   http://ceph.com/docs/master/install/install-ceph-gateway/
 #   for more info on repository recommendations.
@@ -66,13 +66,13 @@
 # [*custom_apache_ports*] Array of ports to listen by Apache.
 #   Optional. Works only if custom_apache set to true. Default is undef.
 #
-define ceph::rgw::apache_fastcgi (
+define cephir::rgw::apache_fastcgi (
   $admin_email          = 'root@localhost',
   $docroot              = '/var/www',
   $fcgi_file            = '/var/www/s3gw.fcgi',
   $rgw_dns_name         = $::fqdn,
   $rgw_port             = '80',
-  $rgw_socket_path      = $::ceph::params::rgw_socket_path,
+  $rgw_socket_path      = $::cephir::params::rgw_socket_path,
   $syslog               = true,
   $ceph_apache_repo     = true,
   $apache_mods          = false,

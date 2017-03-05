@@ -16,7 +16,7 @@
 #
 require 'spec_helper'
 
-describe 'ceph::mirror' do
+describe 'cephir::mirror' do
 
   context 'Ubuntu 16.04' do
 

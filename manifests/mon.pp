@@ -19,7 +19,7 @@
 # Author: David Moreau Simard <dmsimard@iweb.com>
 # Author: David Gurtner <aldavud@crimson.ch>
 #
-# == Define: ceph::mon
+# == Define: cephir::mon
 #
 # Installs and configures MONs (ceph monitors)
 #
@@ -55,9 +55,9 @@
 #   Optional. $key and $keyring are mutually exclusive.
 #
 # [*exec_timeout*] The default exec resource timeout, in seconds
-#   Optional. Defaults to $::ceph::params::exec_timeout
+#   Optional. Defaults to $::cephir::params::exec_timeout
 #
-define ceph::mon (
+define cephir::mon (
   $ensure = present,
   $mon_enable = true,
   $public_addr = undef,
@@ -65,7 +65,7 @@ define ceph::mon (
   $authentication_type = 'cephx',
   $key = undef,
   $keyring  = undef,
-  $exec_timeout = $::ceph::params::exec_timeout,
+  $exec_timeout = $::cephir::params::exec_timeout,
   ) {
 
     include ::stdlib
@@ -89,7 +89,7 @@ define ceph::mon (
       $init = 'upstart'
       Service {
         name     => "ceph-mon-${id}",
-        provider => $::ceph::params::service_provider,
+        provider => $::cephir::params::service_provider,
         start    => "start ceph-mon id=${id}",
         stop     => "stop ceph-mon id=${id}",
         status   => "status ceph-mon id=${id}",

@@ -17,13 +17,13 @@
 #
 require 'spec_helper'
 
-describe 'ceph::profile::params' do
+describe 'cephir::profile::params' do
 
   shared_examples_for 'ceph profile params' do
     describe "should fail when client_keys is not a hash" do
 
       let :pre_condition do
-        "class { 'ceph::profile::params':
+        "class { 'cephir::profile::params':
           client_keys => 'client.admin'
         }"
       end
@@ -34,7 +34,7 @@ describe 'ceph::profile::params' do
     describe "should fail when using cephx without client_keys" do
 
       let :pre_condition do
-        "class { 'ceph::profile::params':
+        "class { 'cephir::profile::params':
           authentication_type => 'cephx',
           client_keys => {}
         }"

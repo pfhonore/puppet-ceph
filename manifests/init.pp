@@ -78,7 +78,7 @@
 #   Optional. String like e.g. 'a, b, c'.
 #
 # [*mon_host*] The fqdn of MONs in the cluster. They can also be declared
-#   individually through ceph::mon.
+#   individually through cephir::mon.
 #   Optional. String like e.g. 'a, b, c'.
 #
 # [*ms_bind_ipv6*] Enables Ceph daemons to bind to IPv6 addresses.
@@ -194,14 +194,14 @@ class ceph (
   #DEPRECATED PARAMETERS
   $set_osd_params                = false,
 ) {
-  include ::ceph::params
+  include ::cephir::params
 
   if $set_osd_params {
     warning('set_osd_params is deprecated. It is here to allow a transition to using \
 this module to assign values and will be removed in a future release.')
   }
 
-  package { $::ceph::params::packages :
+  package { $::cephir::params::packages :
     ensure => $ensure,
     tag    => 'ceph'
   }
