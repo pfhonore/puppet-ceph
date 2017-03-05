@@ -173,7 +173,7 @@ if [ ! -d \$mon_data ] ; then
     mkdir -p \$mon_data
     if getent passwd ceph >/dev/null 2>&1; then
         chown -h ceph:ceph \$mon_data
-        if cephir-mon ${cluster_option} \
+        if ceph-mon ${cluster_option} \
               --setuser ceph --setgroup ceph \
               --mkfs \
               --id ${id} \
@@ -184,7 +184,7 @@ if [ ! -d \$mon_data ] ; then
             rm -fr \$mon_data
         fi
     else
-        if cephir-mon ${cluster_option} \
+        if ceph-mon ${cluster_option} \
               --mkfs \
               --id ${id} \
               --keyring ${keyring_path} ; then
@@ -238,7 +238,7 @@ rm -fr \$mon_data
 ",
         unless    => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-which cephir-mon || exit 0 # if cephir-mon is not available we already uninstalled ceph and there is nothing to do
+which ceph-mon || exit 0 # if ceph-mon is not available we already uninstalled ceph and there is nothing to do
 mon_data=\$(ceph-mon ${cluster_option} --id ${id} --show-config-value mon_data)
 test ! -d \$mon_data
 ",
