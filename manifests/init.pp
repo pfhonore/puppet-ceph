@@ -151,7 +151,7 @@
 #   Boolean.  Default false.
 #
 
-class ceph (
+class cephir (
   $fsid,
   $ensure                        = present,
   $authentication_type           = 'cephx',
