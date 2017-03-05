@@ -20,7 +20,7 @@ require 'puppet/type/cephir_config'
 describe 'Puppet::Type.type(:cephir_config)' do
 
   before :each do
-    @cephir_config = Puppet::Type.type(:ceph_config).new(
+    @cephir_config = Puppet::Type.type(:cephir_config).new(
       :name => 'global/cephir_is_foo', :value => 'bar')
   end
 

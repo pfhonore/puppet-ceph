@@ -71,6 +71,6 @@ define cephir::rgw::apache (
     rgw_port         => $rgw_port,
     rgw_socket_path  => $rgw_socket_path,
     syslog           => $syslog,
-    cephir_apache_repo => $ceph_apache_repo,
+    cephir_apache_repo => $cephir_apache_repo,
   }
 }

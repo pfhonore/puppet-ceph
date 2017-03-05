@@ -78,7 +78,7 @@ define cephir::osd (
       $cephir_zap_osd = "ceph-osd-zap-${name}"
 
       Package<| tag == 'ceph' |> -> Exec[$cephir_check_udev]
-      Exec[$cephir_zap_osd] -> Exec[$ceph_check_udev]
+      Exec[$cephir_zap_osd] -> Exec[$cephir_check_udev]
       Cephir_config<||> -> Exec[$cephir_prepare]
       Ceph::Mon<||> -> Exec[$cephir_prepare]
       Ceph::Key<||> -> Exec[$cephir_prepare]
@@ -88,8 +88,8 @@ define cephir::osd (
 
       if $journal {
         $cephir_zap_journal = "ceph-osd-zap-${name}-${journal}"
-        Exec[$cephir_zap_osd] -> Exec[$ceph_zap_journal]
-        Exec[$cephir_zap_journal] -> Exec[$ceph_check_udev]
+        Exec[$cephir_zap_osd] -> Exec[$cephir_zap_journal]
+        Exec[$cephir_zap_journal] -> Exec[$cephir_check_udev]
         exec { $cephir_zap_journal:
           command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
@@ -142,8 +142,8 @@ test -f ${udev_rules_file} && test \$DISABLE_UDEV -eq 1
       if $fsid {
         $fsid_option = "--cluster-uuid ${fsid}"
         $cephir_check_fsid_mismatch = "ceph-osd-check-fsid-mismatch-${name}"
-        Exec[$cephir_check_udev] -> Exec[$ceph_check_fsid_mismatch]
-        Exec[$cephir_check_fsid_mismatch] -> Exec[$ceph_prepare]
+        Exec[$cephir_check_udev] -> Exec[$cephir_check_fsid_mismatch]
+        Exec[$cephir_check_fsid_mismatch] -> Exec[$cephir_prepare]
         # return error if ${data} has fsid differing from ${fsid}, unless there is no fsid
         exec { $cephir_check_fsid_mismatch:
           command   => "/bin/true # comment to satisfy puppet syntax requirements
@@ -159,7 +159,7 @@ test -z \$(ceph-disk list ${data} | egrep -o '[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a
         }
       }
 
-      Exec[$cephir_check_udev] -> Exec[$ceph_prepare]
+      Exec[$cephir_check_udev] -> Exec[$cephir_prepare]
       # ceph-disk: prepare should be idempotent http://tracker.ceph.com/issues/7475
       exec { $cephir_prepare:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
@@ -197,7 +197,7 @@ ceph-disk list | grep -E ' *${data}1? .*ceph data, (prepared|active)' ||
         }
       }
 
-      Exec[$cephir_prepare] -> Exec[$ceph_activate]
+      Exec[$cephir_prepare] -> Exec[$cephir_activate]
       exec { $cephir_activate:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex

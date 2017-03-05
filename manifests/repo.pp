@@ -75,7 +75,7 @@ class cephir::repo (
       include ::apt
 
       if $cephir_mirror {
-        $cephir_mirror_real = $ceph_mirror
+        $cephir_mirror_real = $cephir_mirror
       } else {
         $cephir_mirror_real = "http://download.ceph.com/debian-${release}/"
         apt::key { 'ceph':

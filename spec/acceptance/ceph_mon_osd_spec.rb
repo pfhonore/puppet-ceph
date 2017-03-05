@@ -28,7 +28,7 @@ describe 'ceph mon osd' do
             release     => 'jewel',
             enable_sig  => true,
             enable_epel => false,
-            cephir_mirror => $ceph_mirror,
+            cephir_mirror => $cephir_mirror,
           }
           class { 'ceph':
             fsid                         => '82274746-9a2c-426b-8c51-107fb0d890c6',
