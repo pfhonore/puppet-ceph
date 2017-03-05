@@ -33,7 +33,7 @@
 #   If set to absent, it will stop the MON service and remove
 #   the associated data directory.
 #
-# [*mon_enable*] Whether to enable ceph-mon instance on boot.
+# [*mon_enable*] Whether to enable cephir-mon instance on boot.
 #   Optional. Default is true.
 #
 # [*public_addr*] The bind IP address.
@@ -76,37 +76,37 @@ define cephir::mon (
     if $cluster {
       $cluster_name = $cluster
     } else {
-      $cluster_name = 'ceph'
+      $cluster_name = 'cephir'
     }
     $cluster_option = "--cluster ${cluster_name}"
 
     # NOTE(aschultz): this is the service title for the mon service. It may be
     # different than the actual service name.
-    $mon_service = "ceph-mon-${id}"
+    $mon_service = "cephir-mon-${id}"
 
     # For Ubuntu Trusty system
     if $::service_provider == 'upstart' {
       $init = 'upstart'
       Service {
-        name     => "ceph-mon-${id}",
+        name     => "cephir-mon-${id}",
         provider => $::cephir::params::service_provider,
-        start    => "start ceph-mon id=${id}",
-        stop     => "stop ceph-mon id=${id}",
-        status   => "status ceph-mon id=${id}",
+        start    => "start cephir-mon id=${id}",
+        stop     => "stop cephir-mon id=${id}",
+        status   => "status cephir-mon id=${id}",
         enable   => $mon_enable,
       }
     # Everything else that is supported by puppet-ceph should run systemd.
     } else {
       $init = 'systemd'
       Service {
-        name   => "ceph-mon@${id}",
+        name   => "cephir-mon@${id}",
         enable => $mon_enable,
       }
     }
 
     if $ensure == present {
 
-      $cephir_mkfs = "ceph-mon-mkfs-${id}"
+      $cephir_mkfs = "cephir-mon-mkfs-${id}"
 
       if $authentication_type == 'cephx' {
         if ! $key and ! $keyring {
@@ -116,7 +116,7 @@ define cephir::mon (
           fail("key (set to ${key}) and keyring (set to ${keyring}) are mutually exclusive")
         }
         if $key {
-          $keyring_path = "/tmp/ceph-mon-keyring-${id}"
+          $keyring_path = "/tmp/cephir-mon-keyring-${id}"
 
           Cephir_config<||> ->
           exec { "create-keyring-${id}":
@@ -156,7 +156,7 @@ test -e \$mon_data/done
 
       Cephir_config<||> ->
       # prevent automatic creation of the client.admin key by ceph-create-keys
-      exec { "ceph-mon-${cluster_name}.client.admin.keyring-${id}":
+      exec { "cephir-mon-${cluster_name}.client.admin.keyring-${id}":
         command => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 touch /etc/ceph/${cluster_name}.client.admin.keyring",
@@ -173,7 +173,7 @@ if [ ! -d \$mon_data ] ; then
     mkdir -p \$mon_data
     if getent passwd ceph >/dev/null 2>&1; then
         chown -h ceph:ceph \$mon_data
-        if ceph-mon ${cluster_option} \
+        if cephir-mon ${cluster_option} \
               --setuser ceph --setgroup ceph \
               --mkfs \
               --id ${id} \
@@ -184,7 +184,7 @@ if [ ! -d \$mon_data ] ; then
             rm -fr \$mon_data
         fi
     else
-        if ceph-mon ${cluster_option} \
+        if cephir-mon ${cluster_option} \
               --mkfs \
               --id ${id} \
               --keyring ${keyring_path} ; then
@@ -238,7 +238,7 @@ rm -fr \$mon_data
 ",
         unless    => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-which ceph-mon || exit 0 # if ceph-mon is not available we already uninstalled ceph and there is nothing to do
+which cephir-mon || exit 0 # if cephir-mon is not available we already uninstalled ceph and there is nothing to do
 mon_data=\$(ceph-mon ${cluster_option} --id ${id} --show-config-value mon_data)
 test ! -d \$mon_data
 ",

@@ -16,9 +16,9 @@
 
 require 'spec_helper'
 
-describe 'ceph' do
+describe 'cephir' do
 
-  shared_examples_for 'ceph' do
+  shared_examples_for 'cephir' do
     describe "with default params and specified fsid" do
       let :params do
         {
@@ -26,8 +26,8 @@ describe 'ceph' do
         }
       end
 
-      it { is_expected.to contain_package('ceph').with(
-      'name'   => 'ceph',
+      it { is_expected.to contain_package('cephir').with(
+      'name'   => 'cephir',
       'ensure' => 'present') }
 
       it { is_expected.to contain_cephir_config('global/fsid').with_value('d5252e7d-75bc-4083-85ed-fe51fa83f62b') }
@@ -100,8 +100,8 @@ describe 'ceph' do
         }
       end
 
-      it { is_expected.to contain_package('ceph').with(
-      'name'   => 'ceph',
+      it { is_expected.to contain_package('cephir').with(
+      'name'   => 'cephir',
       'ensure' => 'present') }
 
       it { is_expected.to contain_cephir_config('global/fsid').with_value('d5252e7d-75bc-4083-85ed-fe51fa83f62b') }
@@ -153,7 +153,7 @@ describe 'ceph' do
         facts.merge!(OSDefaults.get_facts())
       end
 
-      it_behaves_like 'ceph'
+      it_behaves_like 'cephir'
     end
   end
 

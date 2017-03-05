@@ -47,12 +47,12 @@ test $(parted -ms /srv p 2>&1 | egrep -c 'Error.*unrecognised disk label') -eq 0
         'command'   => "/bin/true # comment to satisfy puppet syntax requirements
 # Before Infernalis the udev rules race causing the activation to fail so we
 # disable them. More at: http://www.spinics.net/lists/ceph-devel/msg28436.html
-mv -f /usr/lib/udev/rules.d/95-ceph-osd.rules /usr/lib/udev/rules.d/95-ceph-osd.rules.disabled && udevadm control --reload || true
+mv -f /usr/lib/udev/rules.d/95-cephir-osd.rules /usr/lib/udev/rules.d/95-cephir-osd.rules.disabled && udevadm control --reload || true
 ",
        'onlyif'    => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 DISABLE_UDEV=\$(ceph --version | awk 'match(\$3, /[0-9]+\\.[0-9]+/) {if (substr(\$3, RSTART, RLENGTH) <= 0.94) {print 1}}')
-test -f /usr/lib/udev/rules.d/95-ceph-osd.rules && test \$DISABLE_UDEV -eq 1
+test -f /usr/lib/udev/rules.d/95-cephir-osd.rules && test \$DISABLE_UDEV -eq 1
 ",
        'logoutput' => true,
       ) }
@@ -65,7 +65,7 @@ if ! test -b /srv ; then
         chown -h ceph:ceph /srv
     fi
 fi
-ceph-disk prepare --cluster ceph  /srv 
+ceph-disk prepare --cluster cephir  /srv 
 udevadm settle
 ",
         'unless'    => "/bin/true # comment to satisfy puppet syntax requirements
@@ -88,13 +88,13 @@ fi
 if ! test -b /srv || ! test -b /srv1 ; then
   ceph-disk activate /srv || true
 fi
-if test -f /usr/lib/udev/rules.d/95-ceph-osd.rules.disabled && test -b /srv1 ; then
+if test -f /usr/lib/udev/rules.d/95-cephir-osd.rules.disabled && test -b /srv1 ; then
   ceph-disk activate /srv1 || true
 fi
 ",
         'unless'    => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
-ls -ld /var/lib/ceph/osd/ceph-* | grep ' /srv\$'
+ls -ld /var/lib/ceph/osd/cephir-* | grep ' /srv\$'
 ",
         'logoutput' => true
       ) }
@@ -146,12 +146,12 @@ test $(parted -ms /srv/journal p 2>&1 | egrep -c 'Error.*unrecognised disk label
         'command'   => "/bin/true # comment to satisfy puppet syntax requirements
 # Before Infernalis the udev rules race causing the activation to fail so we
 # disable them. More at: http://www.spinics.net/lists/ceph-devel/msg28436.html
-mv -f /usr/lib/udev/rules.d/95-ceph-osd.rules /usr/lib/udev/rules.d/95-ceph-osd.rules.disabled && udevadm control --reload || true
+mv -f /usr/lib/udev/rules.d/95-cephir-osd.rules /usr/lib/udev/rules.d/95-cephir-osd.rules.disabled && udevadm control --reload || true
 ",
        'onlyif'    => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 DISABLE_UDEV=\$(ceph --version | awk 'match(\$3, /[0-9]+\\.[0-9]+/) {if (substr(\$3, RSTART, RLENGTH) <= 0.94) {print 1}}')
-test -f /usr/lib/udev/rules.d/95-ceph-osd.rules && test \$DISABLE_UDEV -eq 1
+test -f /usr/lib/udev/rules.d/95-cephir-osd.rules && test \$DISABLE_UDEV -eq 1
 ",
        'logoutput' => true,
       ) }
@@ -198,7 +198,7 @@ fi
 if ! test -b /srv/data || ! test -b /srv/data1 ; then
   ceph-disk activate /srv/data || true
 fi
-if test -f /usr/lib/udev/rules.d/95-ceph-osd.rules.disabled && test -b /srv/data1 ; then
+if test -f /usr/lib/udev/rules.d/95-cephir-osd.rules.disabled && test -b /srv/data1 ; then
   ceph-disk activate /srv/data1 || true
 fi
 ",

@@ -49,7 +49,7 @@ describe 'cephir::key' do
           'mode'                    => '0600',
           'selinux_ignore_defaults' => true,
         )
-        is_expected.to contain_exec('ceph-injectkey-client.admin').with(
+        is_expected.to contain_exec('cephir-injectkey-client.admin').with(
            'command' => "/bin/true # comment to satisfy puppet syntax requirements\nset -ex\nceph    auth import -i /etc/ceph/cephir.client.admin.keyring"
         )
       }

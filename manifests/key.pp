@@ -124,7 +124,7 @@ define cephir::key (
   }
 
   # ceph-authtool --add-key is idempotent, will just update pre-existing keys
-  exec { "ceph-key-${name}":
+  exec { "cephir-key-${name}":
     command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 ceph-authtool ${keyring_path} --name '${name}' --add-key '${secret}' ${caps}",
@@ -156,10 +156,10 @@ exit \$rv",
       $inject_keyring_option = ''
     }
 
-    Cephir_config<||> -> Exec["ceph-injectkey-${name}"]
-    Cephir::Mon<||> -> Exec["ceph-injectkey-${name}"]
+    Cephir_config<||> -> Exec["cephir-injectkey-${name}"]
+    Cephir::Mon<||> -> Exec["cephir-injectkey-${name}"]
     # ceph auth import is idempotent, will just update pre-existing keys
-    exec { "ceph-injectkey-${name}":
+    exec { "cephir-injectkey-${name}":
       command   => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
 ceph ${cluster_option} ${inject_id_option} ${inject_keyring_option} auth import -i ${keyring_path}",
@@ -171,7 +171,7 @@ diff -N \$OLD_KEYRING ${keyring_path}
 rv=$?
 rm \$OLD_KEYRING
 exit \$rv",
-      require   => [ Class['ceph'], Exec["ceph-key-${name}"], ],
+      require   => [ Class['cephir'], Exec["cephir-key-${name}"], ],
       logoutput => true,
     }
 

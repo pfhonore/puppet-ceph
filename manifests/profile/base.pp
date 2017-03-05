@@ -23,7 +23,7 @@ class cephir::profile::base {
   include ::cephir::profile::params
 
   if ( $cephir::profile::params::manage_repo ) {
-    Class['cephir::repo'] -> Class['ceph']
+    Class['cephir::repo'] -> Class['cephir']
 
     class { '::cephir::repo':
       release => $cephir::profile::params::release,

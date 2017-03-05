@@ -48,7 +48,7 @@
 #   Optional. Same default as ceph.
 #
 # [*cluster*] The ceph cluster
-#   Optional. Default to 'ceph'.
+#   Optional. Default to 'cephir'.
 #
 class cephir::mds (
   $public_addr    = undef,
@@ -60,7 +60,7 @@ class cephir::mds (
   $mds_ensure     = 'running',
   $mds_id         = $::hostname,
   $keyring        = undef,
-  $cluster        = 'ceph',
+  $cluster        = 'cephir',
 ) inherits cephir::params {
   if $mds_data {
     $mds_data_real = $mds_data

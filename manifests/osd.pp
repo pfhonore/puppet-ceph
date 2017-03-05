@@ -65,7 +65,7 @@ define cephir::osd (
     if $cluster {
       $cluster_name = $cluster
     } else {
-      $cluster_name = 'ceph'
+      $cluster_name = 'cephir'
     }
     $cluster_option = "--cluster ${cluster_name}"
     $objectstore_option = "--${objectstore}"
@@ -124,7 +124,7 @@ test $(parted -ms ${data} p 2>&1 | egrep -c 'Error.*unrecognised disk label') -e
       }
 
 
-      $udev_rules_file = '/usr/lib/udev/rules.d/95-ceph-osd.rules'
+      $udev_rules_file = '/usr/lib/udev/rules.d/95-cephir-osd.rules'
       exec { $cephir_check_udev:
         command   => "/bin/true # comment to satisfy puppet syntax requirements
 # Before Infernalis the udev rules race causing the activation to fail so we

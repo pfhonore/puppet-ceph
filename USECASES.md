@@ -13,7 +13,7 @@ I want to run it on a virtual machine, all in one. The **cephir::repo** class wi
 
 ```
     class { 'cephir::repo': }
-    class { 'ceph':
+    class { 'cephir':
       fsid                       => generate('/usr/bin/uuidgen'),
       mon_host                   => $::ipaddress,
       authentication_type        => 'none',
@@ -55,7 +55,7 @@ Enjoy your ceph cluster!
 
     node /mon[123]/ {
       class { 'cephir::repo': }
-      class { 'ceph':
+      class { 'cephir':
         fsid                => $fsid,
         mon_initial_members => 'mon1,mon2,mon3',
         mon_host            => '<ip of mon1>,<ip of mon2>,<ip of mon3>',
@@ -66,7 +66,7 @@ Enjoy your ceph cluster!
       Ceph::Key {
         inject         => true,
         inject_as_id   => 'mon.',
-        inject_keyring => "/var/lib/ceph/mon/ceph-${::hostname}/keyring",
+        inject_keyring => "/var/lib/ceph/mon/cephir-${::hostname}/keyring",
       }
       cephir::key { 'client.admin':
         secret  => $admin_key,
@@ -82,7 +82,7 @@ Enjoy your ceph cluster!
 
     node /osd*/ {
       class { 'cephir::repo': }
-      class { 'ceph':
+      class { 'cephir':
         fsid                => $fsid,
         mon_initial_members => 'mon1,mon2,mon3',
         mon_host            => '<ip of mon1>,<ip of mon2>,<ip of mon3>',
@@ -94,14 +94,14 @@ Enjoy your ceph cluster!
         journal => '<journal for disk2>';
       }
       cephir::key {'client.bootstrap-osd':
-         keyring_path => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
+         keyring_path => '/var/lib/ceph/bootstrap-osd/cephir.keyring',
          secret       => $bootstrap_osd_key,
       }
     }
 
     node /client/ {
       class { 'cephir::repo': }
-      class { 'ceph':
+      class { 'cephir':
         fsid                => $fsid,
         mon_initial_members => 'mon1,mon2,mon3',
         mon_host            => '<ip of mon1>,<ip of mon2>,<ip of mon3>',
@@ -133,7 +133,7 @@ On the client:
 
     node /node1/ {
       class { 'cephir::repo': }
-      class { 'ceph':
+      class { 'cephir':
         fsid                => $fsid,
         mon_host            => '<ip of node1>',
         mon_initial_members => 'node1',
@@ -152,7 +152,7 @@ On the client:
 
     node /node[23]/ {
       class { 'cephir::repo': }
-      class { 'ceph':
+      class { 'cephir':
         fsid                => $fsid,
         mon_host            => '<ip of node1>',
         mon_initial_members => 'node1',
@@ -168,7 +168,7 @@ On the client:
 
     node /client/ {
       class { 'cephir::repo': }
-      class { 'ceph':
+      class { 'cephir':
         fsid                => $fsid,
         mon_host            => '<ip of node1>',
         mon_initial_members => 'node1',

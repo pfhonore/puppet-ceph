@@ -19,11 +19,11 @@ require 'spec_helper'
 
 describe 'cephir::profile::base' do
 
-  shared_examples_for 'ceph profile base' do
+  shared_examples_for 'cephir profile base' do
     describe "with default params" do
       it { is_expected.to contain_class('cephir::profile::params') }
       it { is_expected.to contain_class('cephir::repo') }
-      it { is_expected.to contain_class('ceph') }
+      it { is_expected.to contain_class('cephir') }
     end
 
     describe "with custom param manage_repo false" do
@@ -32,7 +32,7 @@ describe 'cephir::profile::base' do
       end
       it { is_expected.to contain_class('cephir::profile::params') }
       it { is_expected.to_not contain_class('cephir::repo') }
-      it { is_expected.to contain_class('ceph') }
+      it { is_expected.to contain_class('cephir') }
     end
   end
 
@@ -43,7 +43,7 @@ describe 'cephir::profile::base' do
         facts.merge({})
       end
 
-      it_behaves_like 'ceph profile base'
+      it_behaves_like 'cephir profile base'
     end
   end
 end
