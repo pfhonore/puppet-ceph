@@ -20,7 +20,7 @@ require 'spec_helper'
 
 describe 'cephir::key' do
 
-  shared_examples_for 'ceph key' do
+  shared_examples_for 'cephir key' do
 
     describe "with custom params" do
 
@@ -40,7 +40,7 @@ describe 'cephir::key' do
       end
 
       it {
-        is_expected.to contain_exec('ceph-key-client.admin').with(
+        is_expected.to contain_exec('cephir-key-client.admin').with(
           'command' => "/bin/true # comment to satisfy puppet syntax requirements\nset -ex\nceph-authtool /etc/ceph/cephir.client.admin.keyring --name 'client.admin' --add-key 'supersecret' --cap mon 'allow *' --cap osd 'allow rw' "
         )
         is_expected.to contain_file('/etc/ceph/cephir.client.admin.keyring').with(
@@ -65,7 +65,7 @@ describe 'cephir::key' do
         facts.merge!(OSDefaults.get_facts())
       end
 
-      it_behaves_like 'ceph key'
+      it_behaves_like 'cephir key'
     end
   end
 end

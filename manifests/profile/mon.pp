@@ -33,7 +33,7 @@ class cephir::profile::mon {
   $defaults = {
     inject         => true,
     inject_as_id   => 'mon.',
-    inject_keyring => "/var/lib/ceph/mon/ceph-${::hostname}/keyring",
+    inject_keyring => "/var/lib/ceph/mon/cephir-${::hostname}/keyring",
   }
 
   if !empty($cephir::profile::params::client_keys) {

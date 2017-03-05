@@ -19,7 +19,7 @@ require 'spec_helper'
 
 describe 'cephir::profile::mon' do
 
-  shared_examples_for 'ceph profile mon' do
+  shared_examples_for 'cephr profile mon' do
 
     it { is_expected.to contain_cephir__mon('first').with(
       :authentication_type => 'cephx',
@@ -37,12 +37,12 @@ describe 'cephir::profile::mon' do
         },
         'client.bootstrap-osd' => {
           'secret'       => 'AQARG3JTsDDEHhAAVinHPiqvJkUi5Mww/URupw==',
-          'keyring_path' => '/var/lib/ceph/bootstrap-osd/ceph.keyring',
+          'keyring_path' => '/var/lib/ceph/bootstrap-osd/cephir.keyring',
           'cap_mon'      => 'allow profile bootstrap-osd'
         },
         'client.bootstrap-mds' => {
           'secret'       => 'AQCztJdSyNb0NBAASA2yPZPuwXeIQnDJ9O8gVw==',
-          'keyring_path' => '/var/lib/ceph/bootstrap-mds/ceph.keyring',
+          'keyring_path' => '/var/lib/ceph/bootstrap-mds/cephir.keyring',
           'cap_mon'      => 'allow profile bootstrap-mds'
         },
         'client.volumes' => {
@@ -57,7 +57,7 @@ describe 'cephir::profile::mon' do
       'defaults' => {
         'inject'         => true,
         'inject_as_id'   => 'mon.',
-        'inject_keyring' => '/var/lib/ceph/mon/ceph-first/keyring'
+        'inject_keyring' => '/var/lib/ceph/mon/cephir-first/keyring'
       }
     )}
   end
@@ -68,7 +68,7 @@ describe 'cephir::profile::mon' do
         facts.merge({:hostname => 'first'})
       end
 
-      it_behaves_like 'ceph profile mon'
+      it_behaves_like 'cephir profile mon'
     end
   end
 end
