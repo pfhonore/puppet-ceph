@@ -74,7 +74,7 @@ class cephir::mds (
     $keyring_real = "${mds_data_real}/keyring"
   }
 
-  Ceph_config<||> ~> Service<| tag == 'ceph-mds' |>
+  Cephir_config<||> ~> Service<| tag == 'ceph-mds' |>
   Package<| tag == 'ceph' |>
   -> File[$mds_data_real]
   -> Service<| tag == 'ceph-mds' |>

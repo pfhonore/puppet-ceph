@@ -208,7 +208,7 @@ this module to assign values and will be removed in a future release.')
 
   if $ensure !~ /(absent|purged)/ {
     # Make sure ceph is installed before managing the configuration
-    Package<| tag == 'ceph' |> -> Ceph_config<| |>
+    Package<| tag == 'ceph' |> -> Cephir_config<| |>
     # [global]
     ceph_config {
       'global/fsid':                         value => $fsid;

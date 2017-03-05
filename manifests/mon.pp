@@ -118,7 +118,7 @@ define cephir::mon (
         if $key {
           $keyring_path = "/tmp/ceph-mon-keyring-${id}"
 
-          Ceph_config<||> ->
+          Cephir_config<||> ->
           exec { "create-keyring-${id}":
             command => "/bin/true # comment to satisfy puppet syntax requirements
 set -ex
@@ -154,7 +154,7 @@ test -e \$mon_data/done
         }
       }
 
-      Ceph_config<||> ->
+      Cephir_config<||> ->
       # prevent automatic creation of the client.admin key by ceph-create-keys
       exec { "ceph-mon-${cluster_name}.client.admin.keyring-${id}":
         command => "/bin/true # comment to satisfy puppet syntax requirements
@@ -208,7 +208,7 @@ test -d  \$mon_data
       }
 
       # if the service is running before we setup the configs, notify service
-      Ceph_config<||> ~>
+      Cephir_config<||> ~>
         Service[$mon_service]
 
       if $authentication_type == 'cephx' {

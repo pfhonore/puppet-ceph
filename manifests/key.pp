@@ -156,7 +156,7 @@ exit \$rv",
       $inject_keyring_option = ''
     }
 
-    Ceph_config<||> -> Exec["ceph-injectkey-${name}"]
+    Cephir_config<||> -> Exec["ceph-injectkey-${name}"]
     Cephir::Mon<||> -> Exec["ceph-injectkey-${name}"]
     # ceph auth import is idempotent, will just update pre-existing keys
     exec { "ceph-injectkey-${name}":

@@ -67,6 +67,6 @@ define cephir::mirror (
     tag    => ['ceph-rbd-mirror']
   }
 
-  Ceph_config<||> ~> Service<| tag == 'ceph-rbd-mirror' |>
+  Cephir_config<||> ~> Service<| tag == 'ceph-rbd-mirror' |>
   Package<| tag == 'ceph'|> -> Service<| tag == 'ceph-rbd-mirror' |>
 }

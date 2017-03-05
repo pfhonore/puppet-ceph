@@ -41,7 +41,7 @@ define cephir::fs (
   $data_pool,
   $exec_timeout = $::cephir::params::exec_timeout,
 ) {
-  Ceph_config<||> -> Exec["create-fs-${name}"]
+  Cephir_config<||> -> Exec["create-fs-${name}"]
   Ceph::Pool<||> -> Exec["create-fs-${name}"]
 
   exec { "create-fs-${name}":

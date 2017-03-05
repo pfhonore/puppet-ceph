@@ -79,7 +79,7 @@ define cephir::osd (
 
       Package<| tag == 'ceph' |> -> Exec[$ceph_check_udev]
       Exec[$ceph_zap_osd] -> Exec[$ceph_check_udev]
-      Ceph_config<||> -> Exec[$ceph_prepare]
+      Cephir_config<||> -> Exec[$ceph_prepare]
       Ceph::Mon<||> -> Exec[$ceph_prepare]
       Ceph::Key<||> -> Exec[$ceph_prepare]
 

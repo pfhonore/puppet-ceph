@@ -197,7 +197,7 @@ define cephir::rgw (
     tag    => ['ceph-radosgw']
   }
 
-  Ceph_config<||> ~> Service<| tag == 'ceph-radosgw' |>
+  Cephir_config<||> ~> Service<| tag == 'ceph-radosgw' |>
   Package<| tag == 'ceph' |> -> File['/var/lib/ceph/radosgw']
   Package<| tag == 'ceph' |> -> File[$log_file]
   File['/var/lib/ceph/radosgw']

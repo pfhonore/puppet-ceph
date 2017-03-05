@@ -47,7 +47,7 @@ describe provider_class do
   end
 
   it 'should create keys = value and ensure space around equals' do
-    resource = Puppet::Type::Ceph_config.new(params.merge(
+    resource = Puppet::Type::Cephir_config.new(params.merge(
       :name => 'global/ceph_is_foo', :value => 'bar'))
     provider = provider_class.new(resource)
     expect(provider.exists?).to be_falsey
@@ -62,7 +62,7 @@ ceph_is_foo = bar
   end
 
   it 'should default to file_path if param path is not passed' do
-    resource = Puppet::Type::Ceph_config.new(
+    resource = Puppet::Type::Cephir_config.new(
       :name => 'global/ceph_is_foo', :value => 'bar')
     provider = provider_class.new(resource)
     expect(provider.file_path).to eq('/etc/ceph/cephir.conf')
