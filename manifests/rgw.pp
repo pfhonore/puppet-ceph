@@ -138,7 +138,7 @@ define cephir::rgw (
 
   package { $pkg_radosgw:
     ensure => installed,
-    tag    => 'ceph',
+    tag    => 'cephir',
   }
 
   # Data directory for radosgw
@@ -198,8 +198,8 @@ define cephir::rgw (
   }
 
   Cephir_config<||> ~> Service<| tag == 'ceph-radosgw' |>
-  Package<| tag == 'ceph' |> -> File['/var/lib/ceph/radosgw']
-  Package<| tag == 'ceph' |> -> File[$log_file]
+  Package<| tag == 'cephir' |> -> File['/var/lib/ceph/radosgw']
+  Package<| tag == 'cephir' |> -> File[$log_file]
   File['/var/lib/ceph/radosgw']
   -> File[$rgw_data]
   -> Service<| tag == 'ceph-radosgw' |>

@@ -77,7 +77,7 @@ define cephir::osd (
       $cephir_activate = "ceph-osd-activate-${name}"
       $cephir_zap_osd = "ceph-osd-zap-${name}"
 
-      Package<| tag == 'ceph' |> -> Exec[$cephir_check_udev]
+      Package<| tag == 'cephir' |> -> Exec[$cephir_check_udev]
       Exec[$cephir_zap_osd] -> Exec[$cephir_check_udev]
       Cephir_config<||> -> Exec[$cephir_prepare]
       Ceph::Mon<||> -> Exec[$cephir_prepare]

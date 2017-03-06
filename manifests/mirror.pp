@@ -42,7 +42,7 @@ define cephir::mirror (
     $pkg_mirror,
     {
       ensure => present,
-      tag    => [ 'ceph' ],
+      tag    => [ 'cephir' ],
     }
   )
 
@@ -68,5 +68,5 @@ define cephir::mirror (
   }
 
   Cephir_config<||> ~> Service<| tag == 'ceph-rbd-mirror' |>
-  Package<| tag == 'ceph'|> -> Service<| tag == 'ceph-rbd-mirror' |>
+  Package<| tag == 'cephir'|> -> Service<| tag == 'ceph-rbd-mirror' |>
 }

@@ -75,7 +75,7 @@ class cephir::mds (
   }
 
   Cephir_config<||> ~> Service<| tag == 'ceph-mds' |>
-  Package<| tag == 'ceph' |>
+  Package<| tag == 'cephir' |>
   -> File[$mds_data_real]
   -> Service<| tag == 'ceph-mds' |>
 
@@ -89,7 +89,7 @@ class cephir::mds (
 
   package { $pkg_mds:
     ensure => $pkg_mds_ensure,
-    tag    => 'ceph',
+    tag    => 'cephir',
   }
 
   file { $mds_data_real:

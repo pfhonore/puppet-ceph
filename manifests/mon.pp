@@ -247,7 +247,7 @@ test ! -d \$mon_data
       } ->
       cephir_config {
         "mon.${id}/public_addr": ensure => absent;
-      } -> Package<| tag == 'ceph' |>
+      } -> Package<| tag == 'cephir' |>
     } else {
       fail('Ensure on MON must be either present or absent')
     }

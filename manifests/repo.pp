@@ -78,40 +78,40 @@ class cephir::repo (
         $cephir_mirror_real = $cephir_mirror
       } else {
         $cephir_mirror_real = "http://download.ceph.com/debian-${release}/"
-        apt::key { 'ceph':
+        apt::key { 'cephir':
           ensure => $ensure,
           id     => '08B73419AC32B4E966C1A330E84AC2C0460F3994',
           source => 'https://download.ceph.com/keys/release.asc',
-          before => Apt::Source['ceph'],
+          before => Apt::Source['cephir'],
         }
       }
 
-      apt::source { 'ceph':
+      apt::source { 'cephir':
         ensure   => $ensure,
         location => $cephir_mirror_real,
         release  => $::lsbdistcodename,
-        tag      => 'ceph',
+        tag      => 'cephir',
       }
 
       if $fastcgi {
 
-        apt::key { 'ceph-gitbuilder':
+        apt::key { 'cephir-gitbuilder':
           ensure => $ensure,
           id     => 'FCC5CB2ED8E6F6FB79D5B3316EAEAE2203C3951A',
           server => 'keyserver.ubuntu.com',
         }
 
-        apt::source { 'ceph-fastcgi':
+        apt::source { 'cephir-fastcgi':
           ensure   => $ensure,
           location => "http://gitbuilder.ceph.com/libapache-mod-fastcgi-deb-${::lsbdistcodename}-${::hardwaremodel}-basic/ref/master",
           release  => $::lsbdistcodename,
-          require  => Apt::Key['ceph-gitbuilder'],
+          require  => Apt::Key['cephir-gitbuilder'],
         }
 
       }
 
-      Apt::Source<| tag == 'ceph' |> -> Package<| tag == 'ceph' |>
-      Exec['apt_update'] -> Package<| tag == 'ceph' |>
+      Apt::Source<| tag == 'cephir' |> -> Package<| tag == 'cephir' |>
+      Exec['apt_update'] -> Package<| tag == 'cephir' |>
     }
 
     'RedHat': {
@@ -124,7 +124,7 @@ class cephir::repo (
           warning("CentOS SIG repository is only supported on CentOS operating system, \
 not on ${::operatingsystem}, which can lead to packaging issues.")
         }
-        yumrepo { 'ceph-jewel-sig':
+        yumrepo { 'cephir-jewel-sig':
           enabled    => '1',
           baseurl    => 'http://buildlogs.centos.org/centos/7/storage/x86_64/ceph-jewel/',
           descr      => 'Ceph Jewel SIG',
@@ -132,7 +132,7 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
           gpgcheck   => '0',
         }
         # Make sure we install the repo before any Package resource
-        Yumrepo['ceph-jewel-sig'] -> Package<| tag == 'ceph' |>
+        Yumrepo['cephir-jewel-sig'] -> Package<| tag == 'cephir' |>
       } else {
         # If you want to deploy Ceph using packages provided by ceph.com repositories.
         if ((($::operatingsystem == 'RedHat' or $::operatingsystem == 'CentOS') and (versioncmp($::operatingsystemmajrelease, '7') < 0))
@@ -152,7 +152,7 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
             path   => '/etc/yum.repos.d/CentOS-Base.repo',
             after  => '^\[base\]$',
             line   => 'exclude=python-ceph-compat python-rbd python-rados python-cephfs',
-          } -> Package<| tag == 'ceph' |>
+          } -> Package<| tag == 'cephir' |>
         }
 
         Yumrepo {
@@ -162,43 +162,43 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
         }
 
 
-        yumrepo { 'ext-ceph':
+        yumrepo { 'ext-cephir':
           # puppet versions prior to 3.5 do not support ensure, use enabled instead
           enabled    => $enabled,
           descr      => "External Ceph ${release}",
-          name       => "ext-ceph-${release}",
+          name       => "ext-cephir-${release}",
           baseurl    => "http://download.ceph.com/rpm-${release}/el${el}/\$basearch",
           gpgcheck   => '1',
           gpgkey     => 'https://download.ceph.com/keys/release.asc',
           mirrorlist => absent,
           priority   => '10', # prefer ceph repos over EPEL
-          tag        => 'ceph',
+          tag        => 'cephir',
         }
 
-        yumrepo { 'ext-ceph-noarch':
+        yumrepo { 'ext-cephir-noarch':
           # puppet versions prior to 3.5 do not support ensure, use enabled instead
           enabled    => $enabled,
           descr      => 'External Ceph noarch',
-          name       => "ext-ceph-${release}-noarch",
+          name       => "ext-cephir-${release}-noarch",
           baseurl    => "http://download.ceph.com/rpm-${release}/el${el}/noarch",
           gpgcheck   => '1',
           gpgkey     => 'https://download.ceph.com/keys/release.asc',
           mirrorlist => absent,
           priority   => '10', # prefer ceph repos over EPEL
-          tag        => 'ceph',
+          tag        => 'cephir',
         }
 
         if $fastcgi {
-          yumrepo { 'ext-ceph-fastcgi':
+          yumrepo { 'ext-cephir-fastcgi':
             enabled    => $enabled,
             descr      => 'FastCGI basearch packages for Ceph',
-            name       => 'ext-ceph-fastcgi',
+            name       => 'ext-cephir-fastcgi',
             baseurl    => "http://gitbuilder.ceph.com/mod_fastcgi-rpm-rhel${el}-x86_64-basic/ref/master",
             gpgcheck   => '1',
             gpgkey     => 'https://download.ceph.com/keys/autobuild.asc',
             mirrorlist => absent,
             priority   => '20', # prefer ceph repos over EPEL
-            tag        => 'ceph',
+            tag        => 'cephir',
           }
         }
 
@@ -219,12 +219,12 @@ not on ${::operatingsystem}, which can lead to packaging issues.")
           gpgkey     => "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-${el}",
           mirrorlist => "http://mirrors.fedoraproject.org/metalink?repo=epel-${el}&arch=\$basearch",
           priority   => '20', # prefer ceph repos over EPEL
-          tag        => 'ceph',
+          tag        => 'cephir',
           exclude    => 'python-ceph-compat python-rbd python-rados python-cephfs',
         }
       }
 
-      Yumrepo<| tag == 'ceph' |> -> Package<| tag == 'ceph' |>
+      Yumrepo<| tag == 'cephir' |> -> Package<| tag == 'cephir' |>
     }
 
     default: {

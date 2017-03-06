@@ -203,12 +203,12 @@ this module to assign values and will be removed in a future release.')
 
   package { $::cephir::params::packages :
     ensure => $ensure,
-    tag    => 'ceph'
+    tag    => 'cephir'
   }
 
   if $ensure !~ /(absent|purged)/ {
     # Make sure ceph is installed before managing the configuration
-    Package<| tag == 'ceph' |> -> Cephir_config<| |>
+    Package<| tag == 'cephir' |> -> Cephir_config<| |>
     # [global]
     cephir_config {
       'global/fsid':                         value => $fsid;
