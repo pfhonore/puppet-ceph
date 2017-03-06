@@ -99,7 +99,7 @@ define cephir::mon (
     } else {
       $init = 'systemd'
       Service {
-        name   => "ceph-mon@${id}",
+        name   => "cephir-mon@${id}",
         enable => $mon_enable,
       }
     }

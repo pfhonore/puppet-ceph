@@ -1,5 +1,4 @@
 #
-#   Copyright (C) 2013 Cloudwatt <libre.licensing@cloudwatt.com>
 #   Copyright (C) 2014 Nine Internet Solutions AG
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,24 +13,20 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-# Author: Loic Dachary <loic@dachary.org>
 # Author: David Gurtner <aldavud@crimson.ch>
 #
 require 'spec_helper'
 
-describe 'cephir::mons' do
+describe 'cephir::osds' do
 
-  shared_examples_for 'ceph mons' do
+  shared_examples_for 'cephir osds' do
     let :params do
       {
         :args => {
-          'A' => {
-            'public_addr' => '1.2.3.4',
-            'authentication_type' => 'none',
+          '/dev/sdb' => {
+            'journal' => '/srv/journal',
           },
-          'B' => {
-            'public_addr' => '1.2.3.4',
-            'authentication_type' => 'none',
+          '/srv/data' => {
           },
         },
         :defaults => {
@@ -41,9 +36,26 @@ describe 'cephir::mons' do
     end
 
     it {
-      is_expected.to contain_service('ceph-mon-A').with('ensure' => "running")
-      is_expected.to contain_service('ceph-mon-B').with('ensure' => "running")
+      is_expected.to contain_cephir__osd('/dev/sdb').with(
+        :ensure  => 'present',
+        :journal => '/srv/journal',
+        :cluster => 'CLUSTER')
+      is_expected.to contain_cephir__osd('/srv/data').with(
+        :ensure  => 'present',
+        :cluster => 'CLUSTER')
+      is_expected.not_to contain_sysctl__value('kernel.pid_max')
     }
+  end
+
+  context 'sets pid_max when enabled' do
+    let :params do
+    {
+      :pid_max => 123456,
+    }
+    end
+    it do
+      is_expected.to contain_sysctl__value('kernel.pid_max').with_value(123456)
+    end
   end
 
   on_supported_os({
@@ -54,16 +66,15 @@ describe 'cephir::mons' do
         facts.merge!(OSDefaults.get_facts())
       end
 
-      it_behaves_like 'ceph mons'
+      it_behaves_like 'cephir osds'
     end
   end
 
 end
 
 # Local Variables:
-# compile-command: "cd ../.. ;
-#    export BUNDLE_PATH=/tmp/vendor ;
-#    bundle install ;
+# compile-command: "cd ../..;
+#    bundle install --path=vendor;
 #    bundle exec rake spec
 # "
 # End:
