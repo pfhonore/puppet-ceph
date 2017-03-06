@@ -65,7 +65,7 @@ ceph_is_foo = bar
     resource = Puppet::Type::Ceph_config.new(
       :name => 'global/ceph_is_foo', :value => 'bar')
     provider = provider_class.new(resource)
-    expect(provider.file_path).to eq('/etc/ceph/cephir.conf')
+    expect(provider.file_path).to eq('/etc/ceph/ceph.conf')
   end
 
 end

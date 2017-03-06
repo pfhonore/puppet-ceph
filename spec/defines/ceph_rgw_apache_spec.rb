@@ -75,7 +75,7 @@ describe 'ceph::rgw::apache' do
         'group'   => 'root',
         'mode'    => '0750',
         'content' => "#!/bin/sh
-exec /usr/bin/radosgw -c /etc/ceph/cephir.conf -n radosgw.gateway",
+exec /usr/bin/radosgw -c /etc/ceph/ceph.conf -n radosgw.gateway",
       })}
 
     end
@@ -169,7 +169,7 @@ exec /usr/bin/radosgw -c /etc/ceph/cephir.conf -n radosgw.gateway",
         'group'   => 'root',
         'mode'    => '0750',
         'content' => "#!/bin/sh
-exec /usr/bin/radosgw -c /etc/ceph/cephir.conf -n radosgw.gateway",
+exec /usr/bin/radosgw -c /etc/ceph/ceph.conf -n radosgw.gateway",
       })}
 
     end

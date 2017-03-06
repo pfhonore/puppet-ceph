@@ -17,7 +17,7 @@
 #
 # == Class: ceph::profile::base
 #
-# Base profile to install ceph and configure /etc/ceph/cephir.conf
+# Base profile to install ceph and configure /etc/ceph/ceph.conf
 #
 class ceph::profile::base {
   include ::ceph::profile::params
